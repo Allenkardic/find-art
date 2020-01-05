@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/Allenkardic/find-art/static/css/main.34a1454c.chunk.css",
-    "main.js": "/Allenkardic/find-art/static/js/main.3534398e.chunk.js",
-    "main.js.map": "/Allenkardic/find-art/static/js/main.3534398e.chunk.js.map",
-    "runtime-main.js": "/Allenkardic/find-art/static/js/runtime-main.659438ba.js",
-    "runtime-main.js.map": "/Allenkardic/find-art/static/js/runtime-main.659438ba.js.map",
-    "static/js/2.5b0e0f3c.chunk.js": "/Allenkardic/find-art/static/js/2.5b0e0f3c.chunk.js",
-    "static/js/2.5b0e0f3c.chunk.js.map": "/Allenkardic/find-art/static/js/2.5b0e0f3c.chunk.js.map",
-    "index.html": "/Allenkardic/find-art/index.html",
-    "precache-manifest.9e56a61bef266d68603c3063c93d8fc8.js": "/Allenkardic/find-art/precache-manifest.9e56a61bef266d68603c3063c93d8fc8.js",
-    "service-worker.js": "/Allenkardic/find-art/service-worker.js",
-    "static/css/main.34a1454c.chunk.css.map": "/Allenkardic/find-art/static/css/main.34a1454c.chunk.css.map",
-    "static/js/2.5b0e0f3c.chunk.js.LICENSE": "/Allenkardic/find-art/static/js/2.5b0e0f3c.chunk.js.LICENSE",
-    "static/media/findart.png": "/Allenkardic/find-art/static/media/findart.6373ddf2.png"
+    "main.css": "/find-art/static/css/main.34a1454c.chunk.css",
+    "main.js": "/find-art/static/js/main.f3b2874d.chunk.js",
+    "main.js.map": "/find-art/static/js/main.f3b2874d.chunk.js.map",
+    "runtime-main.js": "/find-art/static/js/runtime-main.9f434dcf.js",
+    "runtime-main.js.map": "/find-art/static/js/runtime-main.9f434dcf.js.map",
+    "static/js/2.5b0e0f3c.chunk.js": "/find-art/static/js/2.5b0e0f3c.chunk.js",
+    "static/js/2.5b0e0f3c.chunk.js.map": "/find-art/static/js/2.5b0e0f3c.chunk.js.map",
+    "index.html": "/find-art/index.html",
+    "precache-manifest.329e582993c1377e635893a0ca693794.js": "/find-art/precache-manifest.329e582993c1377e635893a0ca693794.js",
+    "service-worker.js": "/find-art/service-worker.js",
+    "static/css/main.34a1454c.chunk.css.map": "/find-art/static/css/main.34a1454c.chunk.css.map",
+    "static/js/2.5b0e0f3c.chunk.js.LICENSE": "/find-art/static/js/2.5b0e0f3c.chunk.js.LICENSE",
+    "static/media/findart.png": "/find-art/static/media/findart.6373ddf2.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.659438ba.js",
+    "static/js/runtime-main.9f434dcf.js",
     "static/js/2.5b0e0f3c.chunk.js",
     "static/css/main.34a1454c.chunk.css",
-    "static/js/main.3534398e.chunk.js"
+    "static/js/main.f3b2874d.chunk.js"
   ]
 }
