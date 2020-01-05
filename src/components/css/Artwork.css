@@ -1,0 +1,200 @@
+.home-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.container-home-url {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 0.5rem;
+  margin: 2rem 20rem;
+}
+
+.home-url {
+  border-radius: 4px;
+  max-width: 100%;
+  width: 100%;
+  height: 80vh;
+  background-repeat: no-repeat;
+  position: center;
+}
+
+.home-description-bottom {
+  padding-bottom: 10rem;
+}
+
+.home-description {
+  padding: 0.5rem 0.5rem;
+  border: 0.5px solid whitesmoke;
+  background: whitesmoke;
+  border-radius: 5px;
+  color: black;
+}
+
+.home-description:last-child {
+  margin-bottom: 4rem;
+}
+
+.date-created {
+  color: #020c13f5;
+  margin: 1rem 0rem;
+}
+
+.bid-message {
+  font-size: 1.5em;
+  color: blue;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  border-radius: 14px;
+}
+
+.bid-container {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 12rem;
+  padding-bottom: 2rem;
+}
+
+.minimum-bid {
+  display: flex;
+  font-size: 1.5em;
+  justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.9rem 2rem;
+  border-radius: 10px;
+  border: 2px solid whitesmoke;
+  color: red;
+  background: whitesmoke;
+}
+
+.bid-amount {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border: 2px solid lightgreen;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.9rem 2rem;
+  background: lightgreen;
+  border-radius: 7px;
+  color: black;
+}
+
+.bid-amount-item {
+  padding-left: 1rem;
+}
+
+.btn-art {
+  float: right;
+  width: 200px;
+  margin: 3rem 0rem 0rem 0rem;
+  padding: 1rem 2rem;
+  color: white;
+  border-radius: 4px;
+  background: rgb(167, 5, 5);
+  border: none;
+}
+
+.btn-art:hover {
+  background: rgb(245, 20, 20);
+  color: white;
+}
+
+.preloading {
+  background-color: gainsboro;
+  border-radius: 4px;
+  max-width: 100%;
+  width: 100%;
+  height: 60vh;
+  margin-bottom: 2rem;
+  background-repeat: no-repeat;
+  position: center;
+}
+
+.preloading-bottom {
+  background-color: gainsboro;
+  border-radius: 4px;
+  max-width: 100%;
+  width: 100%;
+  height: 20vh;
+  background-repeat: no-repeat;
+  position: center;
+}
+
+@media screen and (min-width: 700px) {
+  .container-home-url {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 0.5rem;
+    margin: 2rem 15rem;
+  }
+
+  .home-url {
+    border-radius: 4px;
+    max-width: 100%;
+    width: 100%;
+    height: 80vh;
+    background-repeat: no-repeat;
+    position: center;
+  }
+
+  .bid-container {
+    display: flex;
+    flex-direction: column;
+    /* border: 2px solid yellow; */
+    margin: 2rem 5rem;
+    padding-bottom: 2rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container-home-url {
+    display: flex;
+    flex-direction: column;
+    margin: 1.3rem 1rem;
+  }
+
+  .home-url {
+    border-radius: 4px;
+    max-width: 100%;
+    width: 100%;
+    height: 70vh;
+    background-repeat: no-repeat;
+    position: center;
+  }
+
+  .bid-container {
+    display: flex;
+    flex-direction: column;
+    /* border: 2px solid yellow; */
+    margin: 2rem 5rem;
+    padding-bottom: 2rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container-home-url {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0.6rem;
+  }
+
+  .home-url {
+    border-radius: 4px;
+    max-width: 100%;
+    width: 100%;
+    height: 65vh;
+    background-repeat: no-repeat;
+    position: center;
+  }
+
+  .bid-container {
+    display: flex;
+    flex-direction: column;
+    /* border: 2px solid yellow; */
+    margin: 2rem 0.2rem;
+    padding-bottom: 2rem;
+  }
+}
