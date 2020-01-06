@@ -75,7 +75,7 @@ class Signup extends Component {
       password,
       repeatPassword
     } = this.state;
-
+    console.log('sign up error', this.props);
     return (
       <div className="form-container">
         <div className="form-container-items">
@@ -92,7 +92,7 @@ class Signup extends Component {
           <div>
             {this.props.signupInfo.errors_signup ? (
               <h1 style={{ color: 'red' }}>
-                {this.props.errors.errors_signup}
+                {this.props.signupInfo.errors_signup}
               </h1>
             ) : null}
           </div>
@@ -197,8 +197,7 @@ class Signup extends Component {
 
 Signup.propTypes = {
   signupUser: PropTypes.func.isRequired,
-  errors: PropTypes.object.isRequired,
-  loading: PropTypes.object.isRequired
+  signupInfo: PropTypes.object.isRequired
 };
 const mapStateToprops = state => ({
   signupInfo: state.auth
