@@ -11,13 +11,13 @@ class Updateprofile extends Component {
   constructor() {
     super();
     this.state = {
-      id: '',
       address: '',
       country: '',
       dateOfBirth: '',
       firstName: '',
-      imageUrl: '',
       lastName: '',
+      name: '',
+      imageUrl: '',
       phone: ''
     };
     console.log('state', this.state);
@@ -29,20 +29,23 @@ class Updateprofile extends Component {
     }
     if (
       nextProps.userProfile.userDetails.address !== prevState.address ||
-      nextProps.userProfile.userDetails.address !== prevState.address ||
       nextProps.userProfile.userDetails.country !== prevState.country ||
-      nextProps.userProfile.userDetails.firstName !== prevState.firstName ||
       nextProps.userProfile.userDetails.dateOfBirth !== prevState.dateOfBirth ||
+      nextProps.userProfile.userDetails.firstName !== prevState.firstName ||
       nextProps.userProfile.userDetails.lastName !== prevState.lastName ||
+      nextProps.userProfile.userDetails.name !== prevState.name ||
+      nextProps.userProfile.userDetails.imageUrl !== prevState.imageUrl ||
       nextProps.userProfile.userDetails.phone !== prevState.phone
       // nextProps.updateUserProfile.userDetails.imageUrl !== prevState.imageUrl
     ) {
       return {
         address: nextProps.userProfile.userDetails.address,
         country: nextProps.userProfile.userDetails.country,
-        firstName: nextProps.userProfile.userDetails.firstName,
         dateOfBirth: nextProps.userProfile.userDetails.dateOfBirth,
+        firstName: nextProps.userProfile.userDetails.firstName,
         lastName: nextProps.userProfile.userDetails.lastName,
+        name: nextProps.userProfile.userDetails.name,
+        imageUrl: nextProps.userProfile.userDetails.imageUrl,
         phone: nextProps.userProfile.userDetails.phone
         // imageUrl: nextProps.userProfile.userDetails.imageUrl
         // imageUrl: nextProps.updateUserProfile.userDetails.imageUrl
@@ -65,28 +68,33 @@ class Updateprofile extends Component {
 
   handleImageChange = event => {
     const file = this.refs.uploadImage.files[0];
-    console.log(file);
+    console.log('here is file', file);
     const reader = new FileReader();
-    console.log(reader);
+    console.log('picked image convert', reader);
     console.log(this.state);
 
     reader.onloadend = () => {
-      this.setState({
-        imageUrl: reader.result
-      });
-      console.log('onloaded state', this.state);
+      const ImageAvailable = reader.result;
+      // this.setState({
+      //   imageUrl: reader.result
+      // });
+      // console.log('onloaded state', ImageAvailable);
+      // this.setState({ imageUrl: ImageAvailable });
+      this.state.imageUrl = ImageAvailable;
+      console.log('image avai', this.state.imageUrl);
     };
-    if (file) {
-      reader.readAsDataURL(file);
-      this.setState({
-        imageUrl: reader.result
-      });
-      console.log('reader state', this.state);
-    } else {
-      this.setState({
-        imageUrl: ''
-      });
-    }
+
+    reader.readAsDataURL(file);
+    this.state.imageUrl = reader.result;
+    // this.setState({
+    //   imageUrl: reader.result
+    // });
+    console.log('reader state', this.state);
+    // else {
+    //   this.setState({
+    //     imageUrl: ''
+    //   });
+    // }
   };
 
   handleImageEditChange = () => {
@@ -102,6 +110,8 @@ class Updateprofile extends Component {
       country,
       dateOfBirth,
       firstName,
+      lastName,
+      name,
       imageUrl,
       phone
     } = this.state;
@@ -114,6 +124,8 @@ class Updateprofile extends Component {
       country,
       dateOfBirth,
       firstName,
+      lastName,
+      name,
       imageUrl,
       phone
     };
@@ -133,7 +145,7 @@ class Updateprofile extends Component {
           <img
             className="profile-image"
             src={this.state.imageUrl}
-            alt="profile"
+            alt="profilePicture"
           />
         ) : (
           <div className="profile-image-none">
@@ -170,7 +182,6 @@ class Updateprofile extends Component {
             defaultValue={this.state.address}
             onChange={this.handleChange}
             fullWidth
-            required
           />
           <TextField
             id="country"
@@ -180,7 +191,6 @@ class Updateprofile extends Component {
             defaultValue={this.state.country}
             onChange={this.handleChange}
             fullWidth
-            required
           />
 
           <TextField
@@ -191,7 +201,6 @@ class Updateprofile extends Component {
             defaultValue={this.state.dateOfBirth}
             onChange={this.handleChange}
             fullWidth
-            required
           />
 
           <TextField
@@ -202,7 +211,6 @@ class Updateprofile extends Component {
             defaultValue={this.state.firstName}
             onChange={this.handleChange}
             fullWidth
-            required
           />
 
           <TextField
@@ -213,7 +221,16 @@ class Updateprofile extends Component {
             defaultValue={this.state.lastName}
             onChange={this.handleChange}
             fullWidth
-            required
+          />
+
+          <TextField
+            id="name"
+            name="name"
+            type="text"
+            label="user name"
+            defaultValue={this.state.name}
+            onChange={this.handleChange}
+            fullWidth
           />
 
           <TextField
@@ -224,7 +241,6 @@ class Updateprofile extends Component {
             defaultValue={this.state.phone}
             onChange={this.handleChange}
             fullWidth
-            required
           />
           <button className="profile-btn">save</button>
         </form>

@@ -30,7 +30,9 @@ class Userprofile extends Component {
               <i className="fas fa-user-circle" />
             </div>
           )}
-
+          <div className="profile-container-item">
+            Username: {this.props.userProfile.userDetails.name}
+          </div>
           <div className="profile-container-item">
             First name: {this.props.userProfile.userDetails.firstName}
           </div>

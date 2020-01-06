@@ -45,7 +45,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://findartt.herokuapp.com/api/v1",
   "devDependencies": {
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
