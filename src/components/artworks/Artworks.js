@@ -14,7 +14,6 @@ class Artworks extends Component {
 
   render() {
     const { artworks } = this.props;
-    console.log('auth', this.props.authenticated);
     return (
       <div>
         {artworks.map(image => (

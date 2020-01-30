@@ -14,6 +14,7 @@ import PrivateRoute from '../auth/PrivateRoute';
 import Signin from '../auth/Signin';
 import Signup from '../auth/Signup';
 import Logout from '../auth/Logout';
+import Hello from '../auth/Hello';
 // error page
 // import NotFound from './NotFound';
 
@@ -26,7 +27,7 @@ class Main extends Component {
           <Switch>
             <Route exact path="/" component={Signin} />
             <Route exact path="/signup" component={Signup} />
-            {/* <Route component={NotFound} /> */}
+            <Route exact path="/hello" component={Hello} />
             <PrivateRoute exact path="/logout" component={Logout} />
             <PrivateRoute exact path="/artworks" component={Artworks} />
             <PrivateRoute
@@ -39,8 +40,6 @@ class Main extends Component {
               path="/user/myartworks"
               component={Myartworks}
             />
-
-            <PrivateRoute exact path="/user/profile" component={Userprofile} />
 
             <PrivateRoute exact path="/user/profile" component={Userprofile} />
 

@@ -75,7 +75,6 @@ class Signup extends Component {
       password,
       repeatPassword
     } = this.state;
-    console.log('sign up error', this.props);
     return (
       <div className="form-container">
         <div className="form-container-items">

@@ -18,6 +18,8 @@ class Updateprofile extends Component {
     this.nameInput = React.createRef();
     this.imageUrlInput = React.createRef();
     this.phoneInput = React.createRef();
+
+    this.state = { file: '', imagePreviewUrl: '' };
   }
 
   componentDidMount() {
@@ -29,42 +31,21 @@ class Updateprofile extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  handleImageChange = event => {
-    const file = this.refs.uploadImage.files[0];
-    console.log('here is file', file);
+  handleImageChange(e) {
+    e.preventDefault();
+
     const reader = new FileReader();
-    console.log('picked image convert', reader);
-    console.log(this.state);
+    const file = e.target.files[0];
 
     reader.onloadend = () => {
-      // const ImageAvailable = reader.result;
       this.setState({
-        imageUrl: reader.result
+        file: file,
+        imagePreviewUrl: reader.result
       });
-      if (file) {
-        reader.readAsDataURL(file);
-        this.setState({
-          imageUrl: reader.result
-        });
-      } else {
-        this.setState({
-          imageUrl: ''
-        });
-      }
     };
 
     reader.readAsDataURL(file);
-    this.state.imageUrl = reader.result;
-    // this.setState({
-    //   imageUrl: reader.result
-    // });
-    console.log('reader state', this.state);
-    // else {
-    //   this.setState({
-    //     imageUrl: ''
-    //   });
-    // }
-  };
+  }
 
   handleImageEditChange = () => {
     const fileInput = document.getElementById('imageUrl');
@@ -111,22 +92,24 @@ class Updateprofile extends Component {
   };
 
   render() {
+    const { imagePreviewUrl } = this.state;
     if (!this.props.userProfile.userDetails) {
       return <div className="preloading-profile" />;
     }
     return (
       <div className="profile-picture-upload">
-        {/* {this.state.imageUrl !== null ? ( */}
-        <img
-          className="profile-image"
-          // src={this.state.imageUrl}
-          alt="profilePicture"
-        />
+        {imagePreviewUrl ? (
+          <img
+            className="profile-image"
+            src={imagePreviewUrl}
+            alt="profilePicture"
+          />
         ) : (
-        <div className="profile-image-none">
-          <i className="fas fa-user-circle" />
-        </div>
+          <div className="profile-image-none">
+            <i className="fas fa-user-circle" />
+          </div>
         )}
+
         <form action="" onSubmit={this.handleSubmit}>
           <input
             className="profile-picture-upload"
@@ -136,17 +119,14 @@ class Updateprofile extends Component {
             accept="image/png, image/jpeg"
             label="imageUrl"
             hidden="hidden"
-            defaultValue={this.props.userProfile.userDetails.imageUrl}
-            onChange={this.handleImageChange}
-            ref="uploadImage"
+            // defaultValue={this.props.userProfile.userDetails.imageUrl}
+            onChange={e => this.handleImageChange(e)}
           />
 
           <i
             onClick={this.handleImageEditChange}
             className="fas fa-pencil-alt pencil"
-          >
-            {/* // onClick={() => this.fileInput.click()} */}
-          </i>
+          />
 
           <TextField
             id="address"

@@ -12,8 +12,6 @@ class Userprofile extends Component {
   }
 
   render() {
-    console.log('update', this.props);
-    console.log('with profile', this.props.userProfile.userDetails);
     if (!this.props.userProfile.userDetails) {
       return <div className="preloading-profile" />;
     }
