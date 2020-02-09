@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../css/Form.css';
+// import '../css/Form.css';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { connect } from 'react-redux';
 import { logout } from '../../redux/actions/authAction';

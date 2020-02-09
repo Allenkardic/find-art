@@ -2,7 +2,7 @@
 /** @format */
 import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
-import '../css/Form.css';
+import '../css/Signin.css';
 import PropTypes from 'prop-types';
 // redux stuffs
 
@@ -38,43 +38,48 @@ class Signin extends Component {
     // the logic of what the user input does
     this.props.signinUser(existingUser, this.props.history);
 
+    // clear state after user logs in
     this.setState({
       email: '',
       password: ''
     });
-
-    // re-direct user to the home page if credentials are correct
   };
 
   render() {
     const { email, password } = this.state;
 
     return (
-      <div className="form-container">
-        <div className="form-container-items">
-          <img className="art-logo" src={Logo} alt="logo" />
-          <h2 style={{ color: 'rgb(14,75,127)' }}>
-            Create and an account or login if you already have an account
-          </h2>
+      <div className="signin-container">
+        <div className="signin-container-items">
           <h3 style={{ marginTop: '2rem', color: 'rgb(85, 7, 10)' }}>
-            Bid for artworks and view profile or better still you can change
-            your profile and many more
+            Bid for artworks, Add artworks to your collections. Change profile
+            picture and many more
           </h3>{' '}
         </div>
-        <div className="form-container-items">
-          <div>
+
+        <div className="signin-container-items">
+          <div className="signin-container-items-contents">
+            <img className="  art-logo" src={Logo} alt="logo" />
+          </div>
+
+          <div className="signin-container-items-contents">
             {this.props.signinInfo.errors_login ? (
-              <h1 style={{ color: 'red' }}>
+              <h3 style={{ color: 'red' }}>
                 {this.props.signinInfo.errors_login}
-              </h1>
+              </h3>
             ) : null}
           </div>
-          <form action="" onSubmit={this.handleSubmit}>
+
+          <form
+            className="signin-container-items-contents"
+            action=""
+            onSubmit={this.handleSubmit}
+          >
             <TextField
               id="email"
               name="email"
               type="email"
-              label="email"
+              label="Email"
               value={email}
               onChange={this.handleChange}
               fullWidth
@@ -85,7 +90,7 @@ class Signin extends Component {
               id="password"
               name="password"
               type="password"
-              label="password"
+              label="Password"
               value={password}
               onChange={this.handleChange}
               fullWidth
@@ -100,10 +105,10 @@ class Signin extends Component {
               )}
             </button>
           </form>
-          <div>
+          <div className="signin-container-items-contents">
             Don't have an account{' '}
             <Link to="/signup">
-              <span>Sign up </span>
+              <span>Sign up for free</span>
             </Link>{' '}
           </div>
         </div>

@@ -1,0 +1,107 @@
+.signin-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.signin-container-items:first-child {
+  background-color: white;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+.signin-container-items:nth-child(2) {
+  margin: 4rem 35rem;
+  padding: 3rem 2rem;
+  background-color: whitesmoke;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.signin-container-items-contents:first-child {
+  position: absolute;
+  top: -5.5rem;
+  left: 6rem;
+  margin-bottom: 10rem;
+}
+
+.form-container-items-contents:nth-child(2) {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.form-container-items-contents:nth-child(3) {
+  width: 100%;
+}
+
+.btn-default {
+  padding: 0.7rem 1rem;
+  background: rgb(85, 7, 7);
+  border-radius: 5px;
+  border: none;
+  margin: 2rem 2rem 2rem 0;
+  width: 100%;
+  color: white;
+}
+
+.art-logo {
+  width: 200px;
+  /* margin-bottom: 2rem; */
+}
+
+@media screen and (max-width: 1024px) {
+  .signin-container-items:nth-child(2) {
+    margin: 7rem 14rem;
+    padding: 3rem 2rem;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .signin-container-items-contents:first-child {
+    position: absolute;
+    top: -5.5rem;
+    left: 10rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .signin-container-items:nth-child(2) {
+    margin: 7rem 8rem;
+    padding: 3rem 2rem;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .signin-container-items-contents:first-child {
+    position: absolute;
+    top: -5.5rem;
+    left: 8rem;
+  }
+}
+
+@media screen and (max-width: 411px) {
+  .signin-container-items:nth-child(2) {
+    margin: 7rem 1rem;
+    padding: 3rem 1rem;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .signin-container-items-contents:first-child {
+    position: absolute;
+    top: -5.5rem;
+    left: 4.5rem;
+  }
+}

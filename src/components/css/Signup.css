@@ -1,0 +1,77 @@
+.signup-container {
+  background-color: whitesmoke;
+  margin: 7rem 35rem;
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  border-radius: 10px;
+}
+
+.signup-container-items:first-child {
+  position: absolute;
+  top: -5.5rem;
+  left: 6rem;
+}
+
+.signup-container-items:nth-child(2) {
+  margin-top: 1rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .signup-container {
+    background-color: whitesmoke;
+    margin: 7rem 15rem;
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    border-radius: 10px;
+  }
+
+  .signup-container-items:first-child {
+    position: absolute;
+    top: -5.5rem;
+    left: 10rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .signup-container {
+    background-color: whitesmoke;
+    margin: 7rem 8rem;
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    border-radius: 10px;
+  }
+
+  .signup-container-items:first-child {
+    position: absolute;
+    top: -5.5rem;
+    left: 9rem;
+  }
+}
+
+@media screen and (max-width: 411px) {
+  .signup-container {
+    background-color: whitesmoke;
+    margin: 7rem 1rem;
+    padding: 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    border-radius: 10px;
+  }
+
+  .signup-container-items:first-child {
+    position: absolute;
+    top: -5.5rem;
+    left: 4rem;
+  }
+}

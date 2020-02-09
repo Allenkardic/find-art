@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import Logo from '../images/findart.png';
 import { signupUser } from '../../redux/actions/authAction';
 
-import '../css/Form.css';
+import '../css/Signup.css';
 
 class Signup extends Component {
   constructor() {
@@ -76,32 +76,25 @@ class Signup extends Component {
       repeatPassword
     } = this.state;
     return (
-      <div className="form-container">
-        <div className="form-container-items">
+      <div className="signup-container">
+        <div className="signup-container-items">
           <img className="art-logo" src={Logo} alt="logo" />
-          <h2 style={{ color: 'rgb(14,75,127)' }}>
-            Create and an account or login if you already have an account
-          </h2>
-          <h3 style={{ marginTop: '2rem', color: 'rgb(85, 7, 10)' }}>
-            Bid for artworks and view profile or better still you can change
-            your profile and many more
-          </h3>{' '}
         </div>
-        <div className="form-container-items">
-          <div>
-            {this.props.signupInfo.errors_signup ? (
-              <h1 style={{ color: 'red' }}>
-                {this.props.signupInfo.errors_signup}
-              </h1>
-            ) : null}
-          </div>
+        <div className="signup-container-items">
+          {this.props.signupInfo.errors_signup ? (
+            <h1 style={{ color: 'red' }}>
+              {this.props.signupInfo.errors_signup}
+            </h1>
+          ) : null}
+        </div>
 
+        <div className="signup-container-items">
           <ValidatorForm onSubmit={this.handleSubmit}>
             <TextField
               id="email"
               name="email"
               type="email"
-              label="email"
+              label="Email"
               value={email}
               onChange={this.handleChange}
               fullWidth
@@ -112,7 +105,7 @@ class Signup extends Component {
               id="firstName"
               name="firstName"
               type="firstName"
-              label="firstName"
+              label="First name"
               value={firstName}
               onChange={this.handleChange}
               fullWidth
@@ -123,7 +116,7 @@ class Signup extends Component {
               id="lastName"
               name="lastName"
               type="lastName"
-              label="lastName"
+              label="Last name"
               value={lastName}
               onChange={this.handleChange}
               fullWidth
@@ -134,7 +127,7 @@ class Signup extends Component {
               id="phone"
               name="phone"
               type="tel"
-              label="phone"
+              label="Phone"
               value={phone}
               onChange={this.handleChange}
               fullWidth
@@ -145,7 +138,7 @@ class Signup extends Component {
               id="country"
               name="country"
               type="country"
-              label="country"
+              label="Country"
               value={country}
               onChange={this.handleChange}
               fullWidth
@@ -153,7 +146,7 @@ class Signup extends Component {
             />
 
             <TextValidator
-              label="password"
+              label="Password"
               onChange={this.handleChange}
               name="password"
               type="password"
@@ -163,7 +156,7 @@ class Signup extends Component {
               fullWidth
             />
             <TextValidator
-              label="confirm password"
+              label="Confirm password"
               onChange={this.handleChange}
               name="repeatPassword"
               type="password"
@@ -183,7 +176,7 @@ class Signup extends Component {
           </ValidatorForm>
 
           <div>
-            already have an account{' '}
+            Already have an account{' '}
             <Link to="/">
               <span>Login</span>
             </Link>

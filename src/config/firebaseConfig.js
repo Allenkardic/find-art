@@ -1,5 +1,8 @@
+import firebase from 'firebase/app';
+import 'firebase/storage';
+
 // Your web app's Firebase configuration
-let firebaseConfig = {
+const firebaseConfig = {
   apiKey: 'AIzaSyBXgrToAEbwvI-4HOPA2gGQxek8sKc-B8Q',
   authDomain: 'findartt.firebaseapp.com',
   databaseURL: 'https://findartt.firebaseio.com',
@@ -10,3 +13,7 @@ let firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
+const storage = firebase.storage();
+
+export { storage, firebase as default };

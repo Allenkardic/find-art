@@ -5,21 +5,21 @@ import '../css/Userprofile.css';
 // materilize stuffs
 import TextField from '@material-ui/core/TextField';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import { makeStyles } from '@material-ui/core/styles';
+import Input from '@material-ui/core/Input';
+
+// firebase stuffss
+import { storage } from '../../config/firebaseConfig';
 import { getUserData, updateProfile } from '../../redux/actions/userAction';
 
 class Updateprofile extends Component {
   constructor(props) {
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.addressIn = React.createRef();
-    this.countryInput = React.createRef();
-    this.firstNameInput = React.createRef();
-    this.lastNameInput = React.createRef();
-    this.nameInput = React.createRef();
-    this.imageUrlInput = React.createRef();
-    this.phoneInput = React.createRef();
+    // create refs
 
-    this.state = { file: '', imagePreviewUrl: '' };
+    this.nameInput = React.createRef();
+
+    this.state = { file: '', imagePreviewUrl: '', url: '' };
   }
 
   componentDidMount() {
@@ -27,8 +27,23 @@ class Updateprofile extends Component {
     this.props.getUserData(id);
   }
 
-  handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
+  // handleChange = event => {
+  //   this.setState({ [event.target.name]: event.target.value });
+  // };
+
+  handleImageEditChange = () => {
+    const fileInput = document.getElementById('imageUrl');
+    fileInput.click();
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+
+    console.log('hello', this.nameInput);
+
+    // const { id } = this.props.match.params;
+
+    // this.props.updateProfile(userUpdate, this.props.history);
   };
 
   handleImageChange(e) {
@@ -36,6 +51,27 @@ class Updateprofile extends Component {
 
     const reader = new FileReader();
     const file = e.target.files[0];
+    const uploadImage = storage.ref(`images/${file.name}`).put(file);
+    uploadImage.on(
+      'state_changed',
+      snapshot => {
+        console.log(snapshot);
+      },
+      error => {
+        console.log(error);
+      },
+      () => {
+        storage
+          .ref('images')
+          .child(file.name)
+          .getDownloadURL()
+          .then(url => {
+            this.setState({ url });
+            console.log('here is url', this.state);
+          });
+      }
+    );
+    console.log('here is the file', file.name);
 
     reader.onloadend = () => {
       this.setState({
@@ -46,50 +82,6 @@ class Updateprofile extends Component {
 
     reader.readAsDataURL(file);
   }
-
-  handleImageEditChange = () => {
-    const fileInput = document.getElementById('imageUrl');
-    fileInput.click();
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-
-    // const {
-    //   address,
-    //   country,
-    //   firstName,
-    //   lastName,
-    //   name,
-    //   imageUrl,
-    //   phone
-    // } = this.state;
-
-    const { id } = this.props.match.params;
-    console.log('check for value', this);
-    console.log('check for address value', this.addressIn.current.value);
-    // const {
-    //   address,
-    //   country,
-    //   firstName,
-    //   lastName,
-    //   name,
-    //   imageUrl,
-    //   phone
-    // } = this.state;
-    // const userUpdate = {
-    //   id,
-    //   address: this.addressIn.current.value,
-    //   country,
-    //   firstName,
-    //   lastName,
-    //   name,
-    //   imageUrl,
-    //   phone
-    // };
-
-    // this.props.updateProfile(userUpdate, this.props.history);
-  };
 
   render() {
     const { imagePreviewUrl } = this.state;
@@ -110,7 +102,13 @@ class Updateprofile extends Component {
           </div>
         )}
 
-        <form action="" onSubmit={this.handleSubmit}>
+        <form
+          action=""
+          onSubmit={this.handleSubmit}
+          // className={classes.root}
+          noValidate
+          autoComplete="off"
+        >
           <input
             className="profile-picture-upload"
             id="imageUrl"
@@ -135,7 +133,6 @@ class Updateprofile extends Component {
             label="address"
             ref={this.addressIn}
             defaultValue={this.props.userProfile.userDetails.address}
-            onChange={this.handleChange}
             fullWidth
           />
           <TextField
@@ -145,7 +142,6 @@ class Updateprofile extends Component {
             label="country"
             ref={this.countryInput}
             defaultValue={this.props.userProfile.userDetails.country}
-            onChange={this.handleChange}
             fullWidth
           />
 
@@ -156,7 +152,6 @@ class Updateprofile extends Component {
             label="firstName"
             ref={this.firstNameInput}
             defaultValue={this.props.userProfile.userDetails.firstName}
-            onChange={this.handleChange}
             fullWidth
           />
 
@@ -167,18 +162,17 @@ class Updateprofile extends Component {
             label="lastName"
             ref={this.lastNameInput}
             defaultValue={this.props.userProfile.userDetails.lastName}
-            onChange={this.handleChange}
             fullWidth
           />
 
-          <TextField
+          <input
             id="name"
             name="name"
             type="text"
             label="user name"
             ref={this.nameInput}
             defaultValue={this.props.userProfile.userDetails.name}
-            onChange={this.handleChange}
+            inputProps={{ 'aria-label': 'description' }}
             fullWidth
           />
 
@@ -189,7 +183,6 @@ class Updateprofile extends Component {
             label="phone"
             ref={this.phoneInput}
             defaultValue={this.props.userProfile.userDetails.phone}
-            onChange={this.handleChange}
             fullWidth
           />
           <button className="profile-btn">save</button>
