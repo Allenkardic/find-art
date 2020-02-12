@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
-import LinearProgress from '@material-ui/core/LinearProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { connect } from 'react-redux';
 import Logo from '../images/findart.png';
@@ -174,7 +174,12 @@ class Signup extends Component {
                 <button className="btn-default">
                   Sign Up
                   {this.props.signupInfo.ui_loading && (
-                    <LinearProgress style={{ zindex: '5' }} variant="query" />
+                    <CircularProgress
+                      className="btn-default-progress"
+                      disableShrink
+                      size="1.3rem"
+                      thickness="10"
+                    />
                   )}
                 </button>
               </ValidatorForm>

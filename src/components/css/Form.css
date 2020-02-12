@@ -46,10 +46,17 @@
   margin: 2rem 2rem 2rem 0;
   width: 100%;
   color: white;
+  position: relative;
 }
 
-.btn-default:hover {
+/* .btn-default:hover {
   background: rgb(168, 17, 17);
+} */
+
+.btn-default-progress {
+  position: absolute;
+  top: 8px;
+  left: 140px;
 }
 
 @media screen and (max-width: 820px) {
@@ -67,6 +74,12 @@
     left: 28px;
     width: 200px;
     margin-bottom: 2rem;
+  }
+
+  .btn-default-progress {
+    position: absolute;
+    top: 8px;
+    left: 100px;
   }
 }
 

@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 
 // materia ui stuffs
 import TextField from '@material-ui/core/TextField';
-import LinearProgress from '@material-ui/core/LinearProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { connect } from 'react-redux';
 import Logo from '../images/findart.png';
 import { signinUser } from '../../redux/actions/authAction';
@@ -94,10 +94,18 @@ class Signin extends Component {
                   style={{ marginBottom: '1rem' }}
                 />
 
-                <button className="btn-default">
+                <button
+                  className="btn-default"
+                  disabled={this.props.signinInfo.ui_loading}
+                >
                   Login
                   {this.props.signinInfo.ui_loading && (
-                    <LinearProgress style={{ zindex: '5' }} variant="query" />
+                    <CircularProgress
+                      className="btn-default-progress"
+                      disableShrink
+                      size="1.3rem"
+                      thickness="10"
+                    />
                   )}
                 </button>
               </form>
