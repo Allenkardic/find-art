@@ -51,7 +51,7 @@ class Signin extends Component {
     return (
       <div className="form-container">
         <div>
-          <h3 style={{ marginTop: '2rem', color: 'rgb(85, 7, 10)' }}>
+          <h3 className="form-bid">
             Bid for artworks, Add artworks to your collections. Change profile
             picture and many more
           </h3>{' '}

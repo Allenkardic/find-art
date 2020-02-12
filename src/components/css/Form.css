@@ -1,12 +1,10 @@
 .form-container {
-  display: flex;
-  flex-direction: column;
   text-align: center;
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 
-.form-container-items {
-  display: block;
+.form-bid {
+  color: rgb(85, 7, 10);
 }
 
 .form-container-items {
@@ -35,7 +33,7 @@
 .art-logo {
   position: absolute;
   top: -88px;
-  left: 65px;
+  left: 55px;
   width: 200px;
   margin-bottom: 2rem;
 }
@@ -52,4 +50,28 @@
 
 .btn-default:hover {
   background: rgb(168, 17, 17);
+}
+
+@media screen and (max-width: 820px) {
+  .form-container {
+    font-size: 0.8em;
+  }
+
+  .form-box {
+    width: 250px;
+  }
+
+  .art-logo {
+    position: absolute;
+    top: -88px;
+    left: 28px;
+    width: 200px;
+    margin-bottom: 2rem;
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .form-box {
+    width: 220px;
+  }
 }
