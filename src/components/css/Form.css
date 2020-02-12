@@ -9,7 +9,7 @@
   display: block;
 }
 
-.form-container-items:nth-child(2) {
+.form-container-items {
   margin-top: 8rem;
   display: flex;
   flex-direction: column;

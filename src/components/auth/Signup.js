@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import Logo from '../images/findart.png';
 import { signupUser } from '../../redux/actions/authAction';
 
-import '../css/Signup.css';
+import '../css/Form.css';
 
 class Signup extends Component {
   constructor() {
@@ -76,110 +76,116 @@ class Signup extends Component {
       repeatPassword
     } = this.state;
     return (
-      <div className="signup-container">
-        <div className="signup-container-items">
-          <img className="art-logo" src={Logo} alt="logo" />
-        </div>
-        <div className="signup-container-items">
-          {this.props.signupInfo.errors_signup ? (
-            <h1 style={{ color: 'red' }}>
-              {this.props.signupInfo.errors_signup}
-            </h1>
-          ) : null}
-        </div>
+      <div className="form-container">
+        <div className="form-container-items">
+          <div className="form-container-items-content">
+            <div className="form-box">
+              <img className="art-logo" src={Logo} alt="logo" />
 
-        <div className="signup-container-items">
-          <ValidatorForm onSubmit={this.handleSubmit}>
-            <TextField
-              id="email"
-              name="email"
-              type="email"
-              label="Email"
-              value={email}
-              onChange={this.handleChange}
-              fullWidth
-              required
-            />
+              <div>
+                {this.props.signupInfo.errors_signup ? (
+                  <h1 style={{ color: 'red' }}>
+                    {this.props.signupInfo.errors_signup}
+                  </h1>
+                ) : null}
+              </div>
 
-            <TextField
-              id="firstName"
-              name="firstName"
-              type="firstName"
-              label="First name"
-              value={firstName}
-              onChange={this.handleChange}
-              fullWidth
-              required
-            />
+              <ValidatorForm onSubmit={this.handleSubmit}>
+                <TextField
+                  id="email"
+                  name="email"
+                  type="email"
+                  label="Email"
+                  value={email}
+                  onChange={this.handleChange}
+                  fullWidth
+                  required
+                />
 
-            <TextField
-              id="lastName"
-              name="lastName"
-              type="lastName"
-              label="Last name"
-              value={lastName}
-              onChange={this.handleChange}
-              fullWidth
-              required
-            />
+                <TextField
+                  id="firstName"
+                  name="firstName"
+                  type="firstName"
+                  label="First name"
+                  value={firstName}
+                  onChange={this.handleChange}
+                  fullWidth
+                  required
+                />
 
-            <TextField
-              id="phone"
-              name="phone"
-              type="tel"
-              label="Phone"
-              value={phone}
-              onChange={this.handleChange}
-              fullWidth
-              required
-            />
+                <TextField
+                  id="lastName"
+                  name="lastName"
+                  type="lastName"
+                  label="Last name"
+                  value={lastName}
+                  onChange={this.handleChange}
+                  fullWidth
+                  required
+                />
 
-            <TextField
-              id="country"
-              name="country"
-              type="country"
-              label="Country"
-              value={country}
-              onChange={this.handleChange}
-              fullWidth
-              required={true}
-            />
+                <TextField
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  label="Phone"
+                  value={phone}
+                  onChange={this.handleChange}
+                  fullWidth
+                  required
+                />
 
-            <TextValidator
-              label="Password"
-              onChange={this.handleChange}
-              name="password"
-              type="password"
-              validators={['required']}
-              errorMessages={['this field is required']}
-              value={password}
-              fullWidth
-            />
-            <TextValidator
-              label="Confirm password"
-              onChange={this.handleChange}
-              name="repeatPassword"
-              type="password"
-              validators={['isPasswordMatch', 'required']}
-              errorMessages={['password mismatch', 'this field is required']}
-              value={repeatPassword}
-              fullWidth
-              style={{ marginBottom: '1rem' }}
-            />
+                <TextField
+                  id="country"
+                  name="country"
+                  type="country"
+                  label="Country"
+                  value={country}
+                  onChange={this.handleChange}
+                  fullWidth
+                  required={true}
+                />
 
-            <button className="btn-default">
-              Sign Up
-              {this.props.signupInfo.ui_loading && (
-                <LinearProgress style={{ zindex: '5' }} variant="query" />
-              )}
-            </button>
-          </ValidatorForm>
+                <TextValidator
+                  label="Password"
+                  onChange={this.handleChange}
+                  name="password"
+                  type="password"
+                  validators={['required']}
+                  errorMessages={['this field is required']}
+                  value={password}
+                  fullWidth
+                />
+                <TextValidator
+                  label="Confirm password"
+                  onChange={this.handleChange}
+                  name="repeatPassword"
+                  type="password"
+                  validators={['isPasswordMatch', 'required']}
+                  errorMessages={[
+                    'password mismatch',
+                    'this field is required'
+                  ]}
+                  value={repeatPassword}
+                  fullWidth
+                  style={{ marginBottom: '1rem' }}
+                />
 
-          <div>
-            Already have an account{' '}
-            <Link to="/">
-              <span>Login</span>
-            </Link>
+                <button className="btn-default">
+                  Sign Up
+                  {this.props.signupInfo.ui_loading && (
+                    <LinearProgress style={{ zindex: '5' }} variant="query" />
+                  )}
+                </button>
+              </ValidatorForm>
+
+              <div>
+                Already have an account{' '}
+                <Link to="/">
+                  <span>Login</span>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>
