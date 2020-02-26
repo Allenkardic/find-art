@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import LinearProgress from '@material-ui/core/LinearProgress';
 import { getArtworks } from '../../redux/actions/artworkAction';
 import Artwork from './Artwork';
 
 class Artworks extends Component {
   componentDidMount() {
     this.props.getArtworks();
-
-    console.log('props', this.props);
   }
 
   render() {
     const { artworks } = this.props;
     return (
-      <div>
+      <div className="container-artworks">
         {artworks.map(image => (
           <Artwork Key={image.id} artworks={image} />
         ))}

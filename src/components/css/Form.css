@@ -49,9 +49,9 @@
   position: relative;
 }
 
-/* .btn-default:hover {
+.btn-default:hover {
   background: rgb(168, 17, 17);
-} */
+}
 
 .btn-default-progress {
   position: absolute;

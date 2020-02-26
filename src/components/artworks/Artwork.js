@@ -7,18 +7,21 @@ class Artwork extends Component {
   render() {
     const { id, imageUrl, name, description } = this.props.artworks;
     return (
-      <div className="container-home-url">
+      <div className="container-artwork-url">
         <div>
           <Link to={`/artwork/bid/${id}`}>
-            <img className="home-url" src={imageUrl} alt="art work" />
+            <img className="artwork-image" src={imageUrl} alt="art work" />
           </Link>
         </div>
-        <div className="home-description">
-          <h3 style={{ color: 'red', marginBottom: '1rem' }}>
-            Click on art work to make bid
-          </h3>
-          <div>Art work name: {name}</div>
-          <div>Description: {description}</div>
+        <div className="artwork-description">
+          <div className="des-first">
+            <span className="artwork-description-title ">Art work name:</span>{' '}
+            {name}
+          </div>
+          <div>
+            <span className="artwork-description-title">Description:</span>{' '}
+            {description}
+          </div>
         </div>
       </div>
     );

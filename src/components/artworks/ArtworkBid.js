@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
-import LinearProgress from '@material-ui/core/LinearProgress';
 import TextField from '@material-ui/core/TextField';
 import '../css/Artwork.css';
 import { connect } from 'react-redux';
@@ -21,7 +20,16 @@ class ArtworkBid extends Component {
       id: textToNumber,
       madeBy: textToNumber,
       updatedDate: '',
-      updatedDateEpoch: textToNumber
+      updatedDateEpoch: textToNumber,
+
+      pagination: {
+        bids: [],
+        setPost: [],
+        currentPage: 1,
+        setCurrentPage: 1,
+        bidsPerPage: 5,
+        setBidsPerPage: 5
+      }
     };
   }
 
@@ -78,7 +86,7 @@ class ArtworkBid extends Component {
 
     if (!this.props.singleArtwork.currentBid) {
       return (
-        <div className="container-home-url">
+        <div className="preload-artwork-container">
           {' '}
           <div className="preloading" />
           <div className="preloading-bottom" />
@@ -88,9 +96,9 @@ class ArtworkBid extends Component {
     console.log(this.props);
 
     return (
-      <div className="container-home-url">
+      <div className="container-artworkbid">
         <img
-          className="home-url"
+          className="artworkbid-image"
           src={this.props.singleArtwork.imageUrl}
           alt="art work"
         />
@@ -107,6 +115,28 @@ class ArtworkBid extends Component {
             </span>
             {this.props.singleArtwork.minimumAmount}
           </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Points</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Peter</td>
+                <td>Griffin</td>
+                <td>$100</td>
+              </tr>
+              <tr>
+                <td>Lois</td>
+                <td>Griffin</td>
+                <td>$150</td>
+              </tr>
+            </tbody>
+          </table>
           {this.props.singleArtwork.bids.map(bid => (
             <div className="bid-amount">
               <div className="bid-amount-item">

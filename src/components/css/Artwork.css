@@ -1,30 +1,28 @@
-.home-nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-
-.container-home-url {
-  display: flex;
-  flex-direction: column;
+.container-artwork-url {
+  width: 400px;
+  height: auto;
   padding: 0.5rem 0.5rem;
-  margin: 2rem 20rem;
+  margin-bottom: 3rem;
 }
 
-.home-url {
+.artwork-image {
   border-radius: 4px;
   max-width: 100%;
   width: 100%;
-  height: 80vh;
+  height: 400px;
   background-repeat: no-repeat;
   position: center;
+}
+
+.artwork-image:hover {
+  opacity: 0.6;
 }
 
 .home-description-bottom {
   padding-bottom: 10rem;
 }
 
-.home-description {
+.artwork-description {
   padding: 0.5rem 0.5rem;
   border: 0.5px solid whitesmoke;
   background: whitesmoke;
@@ -32,8 +30,34 @@
   color: black;
 }
 
-.home-description:last-child {
-  margin-bottom: 4rem;
+.des-first {
+  margin-bottom: 0.5rem;
+}
+
+.artwork-description-title {
+  color: blue;
+}
+
+/* artworks css */
+.container-artworks {
+  justify-content: space-evenly;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* artwork bid css starts */
+.container-artworkbid {
+  margin: auto;
+  width: 600px;
+}
+
+.artworkbid-image {
+  margin-top: 0.2rem;
+  width: 100%;
+  max-width: 100%;
+  height: 500px;
+  background-repeat: no-repeat;
+  position: center;
 }
 
 .date-created {
@@ -52,7 +76,7 @@
 .bid-container {
   display: flex;
   flex-direction: column;
-  margin: 2rem 12rem;
+  margin: 2rem 0rem;
   padding-bottom: 2rem;
 }
 
@@ -67,6 +91,22 @@
   border: 2px solid whitesmoke;
   color: red;
   background: whitesmoke;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+  background-color: #f5f5f5;
 }
 
 .bid-amount {
@@ -102,6 +142,11 @@
   color: white;
 }
 
+.preload-artwork-container {
+  width: 50vw;
+  margin: 2rem auto;
+}
+
 .preloading {
   background-color: gainsboro;
   border-radius: 4px;
@@ -123,78 +168,33 @@
   position: center;
 }
 
-@media screen and (min-width: 700px) {
-  .container-home-url {
-    display: flex;
-    flex-direction: column;
-    padding: 0.5rem 0.5rem;
-    margin: 2rem 15rem;
-  }
-
-  .home-url {
-    border-radius: 4px;
-    max-width: 100%;
-    width: 100%;
-    height: 80vh;
-    background-repeat: no-repeat;
-    position: center;
-  }
-
-  .bid-container {
-    display: flex;
-    flex-direction: column;
-    /* border: 2px solid yellow; */
-    margin: 2rem 5rem;
-    padding-bottom: 2rem;
-  }
-}
-
 @media screen and (max-width: 768px) {
-  .container-home-url {
-    display: flex;
-    flex-direction: column;
-    margin: 1.3rem 1rem;
-  }
-
-  .home-url {
-    border-radius: 4px;
-    max-width: 100%;
-    width: 100%;
-    height: 70vh;
-    background-repeat: no-repeat;
-    position: center;
+  .container-artworkbid {
+    border: 1px solid red;
+    width: 400px;
+    margin: none;
   }
 
   .bid-container {
     display: flex;
     flex-direction: column;
     /* border: 2px solid yellow; */
-    margin: 2rem 5rem;
+    margin: 2rem 0rem;
     padding-bottom: 2rem;
   }
 }
 
-@media screen and (max-width: 600px) {
-  .container-home-url {
-    display: flex;
-    flex-direction: column;
-    margin: 1rem 0.6rem;
-  }
-
-  .home-url {
-    border-radius: 4px;
-    max-width: 100%;
-    width: 100%;
-    height: 65vh;
-    background-repeat: no-repeat;
-    position: center;
+@media screen and (max-width: 500px) {
+  .container-artworkbid {
+    width: 95%;
+    margin: auto;
   }
 
   .bid-container {
     display: flex;
     flex-direction: column;
     /* border: 2px solid yellow; */
-    margin: 2rem 0.2rem;
+    /* margin: 2rem 0.2rem; */
     padding-bottom: 2rem;
   }
 }
