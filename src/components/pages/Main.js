@@ -17,6 +17,7 @@ import Logout from '../auth/Logout';
 import Hello from '../auth/Hello';
 // error page
 // import NotFound from './NotFound';
+import PAGINATION from '../utilities/PaginationArtworkBid';
 
 class Main extends Component {
   render() {
@@ -48,6 +49,8 @@ class Main extends Component {
               path="/user/profile/update/:id"
               component={Updateprofile}
             />
+
+            <PrivateRoute exact path="/pagination" component={PAGINATION} />
 
             <Route exact path="/settings" component={Settings} />
           </Switch>
