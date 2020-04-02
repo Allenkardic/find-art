@@ -4,7 +4,7 @@ import Moment from 'react-moment';
 import '../css/Userprofile.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getUserData } from '../../redux/actions/userAction';
+import { getUserData, getUsersData } from '../../redux/actions/userAction';
 
 class Userprofile extends Component {
   componentDidMount() {
@@ -15,44 +15,61 @@ class Userprofile extends Component {
     if (!this.props.userProfile.userDetails) {
       return <div className="preloading-profile" />;
     }
+
+    const {
+      imageUrl,
+      name,
+      phone,
+      dateOfBirth,
+      country,
+      address
+    } = this.props.userProfile.userDetails;
     return (
       <div className="profile-container">
-        <div>
-          {this.props.userProfile.userDetails.imageUrl !== null ? (
-            <img
-              className="profile-image"
-              src={this.props.userProfile.userDetails.imageUrl}
-            />
-          ) : (
-            <div className="profile-image-none">
-              <i className="fas fa-user-circle" />
-            </div>
-          )}
-          <div className="profile-container-item">
-            Username: {this.props.userProfile.userDetails.name}
+        {imageUrl !== null ? (
+          <img className="profile-image" src={imageUrl} alt="profile picture" />
+        ) : (
+          <div className="profile-image-none">
+            <i className="fas fa-user-circle" />
           </div>
-          <div className="profile-container-item">
-            First name: {this.props.userProfile.userDetails.firstName}
-          </div>
-          <div className="profile-container-item">
-            Last name: {this.props.userProfile.userDetails.lastName}
-          </div>
-          <div className="profile-container-item">
-            Phone number: {this.props.userProfile.userDetails.phone}
-          </div>
-          <div className="profile-container-item">
-            DOB:{' '}
-            <Moment format="D MMM YYYY" withTitle>
-              {this.props.userProfile.userDetails.dateOfBirth}
-            </Moment>
-          </div>
-          <div className="profile-container-item">
-            Country: {this.props.userProfile.userDetails.country}
-          </div>
-          <div className="profile-container-item">
-            Address: {this.props.userProfile.userDetails.address}
-          </div>
+        )}
+
+        <div className="profile-container-item profile-username">
+          <i className="fas fa-at" /> {name}
         </div>
+
+        <div className="profile-container-item ">
+          {phone === '' ? null : (
+            <span>
+              <i className="fas fa-mobile-alt" /> {phone}
+            </span>
+          )}
+        </div>
+        <div className="profile-container-item">
+          {dateOfBirth === '' ? null : (
+            <span>
+              DOB:{' '}
+              <Moment format="D MMM YYYY" withTitle>
+                {dateOfBirth}
+              </Moment>
+            </span>
+          )}
+        </div>
+        <div className="profile-container-item">
+          {country === '' ? null : (
+            <span>
+              <i className="fas fa-globe-africa" /> {country}
+            </span>
+          )}
+        </div>
+        <div className="profile-container-item">
+          {address === '' ? null : (
+            <span>
+              <i className="fas fa-map-marker-alt" /> {address}
+            </span>
+          )}
+        </div>
+
         <div>
           <Link
             to={`/user/profile/update/${this.props.userProfile.userDetails.id}`}

@@ -1,11 +1,10 @@
 .profile-container {
-  display: flex;
-  flex-direction: column;
+  width: 300px;
+  margin: 2rem auto;
   text-align: center;
-  margin: 1rem 10rem;
-  padding: 1rem 4rem;
   background-color: whitesmoke;
   border-radius: 6px;
+  padding: 1rem 1rem;
 }
 
 .profile-image-none {
@@ -20,140 +19,79 @@
   text-align: center;
 }
 
-.profile-picture-upload {
-  /* border: 2px solid red; */
-  background-color: whitesmoke;
-  border-radius: 6px;
-  text-align: center;
-  margin: 1rem 10rem;
-  padding: 1rem 4rem;
+.image-placeholder {
+  position: fixed;
+  font-size: 150px;
+  left: 0;
+  right: 0;
+  z-index: -1;
 }
 
 .pencil {
   position: relative;
   bottom: 2rem;
   font-size: 1.3em;
-  color: blue;
+  color: rgb(11, 11, 58);
   margin-left: 10rem;
-  padding-bottom: 4rem;
 }
 
 .profile-container-item {
-  padding: 1rem 1rem;
+  padding: 0.5rem 0;
+}
+
+.profile-username {
+  font-size: 1.3em;
 }
 
 .profile-btn {
   width: 100px;
-  float: right;
   padding: 0.5rem 0.5rem;
   background: rgb(85, 7, 7);
   border-radius: 5px;
   border: none;
-  margin: 2rem 20rem 2rem 0;
   color: white;
 }
 
 .preloading-profile {
+  width: 300px;
+  margin: 2rem auto;
+  text-align: center;
+  border-radius: 6px;
+  padding: 1rem 1rem;
   background-color: gainsboro;
-  margin: 2rem 2rem 0rem 2rem;
-  border-radius: 4px;
   height: 80vh;
-  background-repeat: no-repeat;
-  position: center;
 }
 
-@media screen and (min-width: 700px) {
-  .profile-container {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    margin: 1rem 4rem;
-    padding: 1rem 2rem;
-    background-color: whitesmoke;
-    border-radius: 6px;
-  }
-
-  .profile-picture-upload {
-    /* border: 2px solid red; */
-    background-color: whitesmoke;
-    border-radius: 6px;
-    text-align: center;
-    margin: 1rem 4rem;
-    padding: 1rem 2rem;
-  }
-
-  .profile-btn {
-    width: 100px;
-    float: right;
-    padding: 0.5rem 0.5rem;
-    background: rgb(85, 7, 7);
-    border-radius: 5px;
-    border: none;
-    margin: 2rem 20rem 2rem 0;
-    color: white;
-  }
+.container-profile-input {
+  margin-bottom: 1rem;
 }
 
-@media screen and (max-width: 768px) {
-  .profile-container {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    margin: 1rem 1rem;
-    padding: 1rem 1rem;
-    background-color: whitesmoke;
-    border-radius: 6px;
-  }
-
-  .profile-picture-upload {
-    /* border: 2px solid red; */
-    background-color: whitesmoke;
-    border-radius: 6px;
-    text-align: center;
-    margin: 1rem 1rem;
-    padding: 1rem 1rem;
-  }
-
-  .profile-btn {
-    width: 100px;
-    float: right;
-    padding: 0.5rem 0.5rem;
-    background: rgb(85, 7, 7);
-    border-radius: 5px;
-    border: none;
-    margin: 2rem 4rem 2rem 0;
-    color: white;
-  }
+.profile-label {
+  float: left;
 }
 
-@media screen and (max-width: 600px) {
+.profile-input {
+  width: 100%;
+  height: 3vh;
+  border: 1px solid #020c13f5;
+}
+
+@media screen and (max-width: 680px) {
   .profile-container {
-    display: flex;
-    flex-direction: column;
+    width: 90%;
+    margin: 2rem auto;
     text-align: center;
-    margin: 1rem 1rem;
-    padding: 1rem 1rem;
     background-color: whitesmoke;
     border-radius: 6px;
+    padding: 1rem 0.5rem;
   }
 
-  .profile-picture-upload {
-    /* border: 2px solid red; */
-    background-color: whitesmoke;
-    border-radius: 6px;
+  .preloading-profile {
+    width: 90%;
+    margin: 2rem auto;
     text-align: center;
-    margin: 1rem 1rem;
-    padding: 1rem 1rem;
-  }
-
-  .profile-btn {
-    width: 100px;
-    float: right;
-    padding: 0.5rem 0.5rem;
-    background: rgb(85, 7, 7);
-    border-radius: 5px;
-    border: none;
-    margin: 2rem 4rem 2rem 0;
-    color: white;
+    background-color: gainsboro;
+    border-radius: 6px;
+    padding: 1rem 0.5rem;
   }
 }

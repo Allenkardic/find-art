@@ -111,7 +111,7 @@ const ArtworkBid = props => {
       </div>
     );
   }
-
+  console.log('failed billed', props.artworkbidMessage.length);
   return (
     <div className="container-artworkbid">
       <img
@@ -133,26 +133,31 @@ const ArtworkBid = props => {
           {props.singleArtwork.minimumAmount}
         </div>
 
-        <div className="bid-message">{props.artworkbidMessage}</div>
-
-        <form
-          style={{ marginBottom: '4rem' }}
-          action=""
-          onSubmit={handleSubmit}
+        <div
+          className={
+            props.artworkbidMessage.length === 40
+              ? 'bid-message-failed'
+              : 'bid-message-success'
+          }
         >
-          <TextField
-            id="amount"
-            name="amount"
-            type="number"
-            label="Your bid amount"
-            value={bidData.amount}
-            onChange={handleChange}
-            fullWidth
-            required
-          />
+          {props.artworkbidMessage}
+        </div>
+        <div>
+          <form className="form-container" action="" onSubmit={handleSubmit}>
+            <TextField
+              id="amount"
+              name="amount"
+              type="number"
+              label="Your bid amount"
+              value={bidData.amount}
+              onChange={handleChange}
+              fullWidth
+              required
+            />
 
-          <button className="btn-art">Make a Bid</button>
-        </form>
+            <button className="btn-art">Make a Bid</button>
+          </form>
+        </div>
 
         {/* bid data */}
         <Paper className={classes.root}>

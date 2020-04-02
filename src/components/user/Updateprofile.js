@@ -10,16 +10,30 @@ import Input from '@material-ui/core/Input';
 
 // firebase stuffss
 import { storage } from '../../config/firebaseConfig';
-import { getUserData, updateProfile } from '../../redux/actions/userAction';
+import { getUserData, updateUserProfile } from '../../redux/actions/userAction';
 
 class Updateprofile extends Component {
   constructor(props) {
     super(props);
+
     // create refs
 
     this.nameInput = React.createRef();
+    this.countryInput = React.createRef();
+    this.firstNameInput = React.createRef();
+    this.lastNameInput = React.createRef();
+    this.addressInput = React.createRef();
+    this.phoneInput = React.createRef();
 
-    this.state = { file: '', imagePreviewUrl: '', url: '' };
+    console.log('ref', this.nameInput);
+
+    this.state = {
+      file: '',
+      imagePreviewUrl: '',
+      url: '',
+      imgDesplay: '',
+      id: ''
+    };
   }
 
   componentDidMount() {
@@ -27,23 +41,9 @@ class Updateprofile extends Component {
     this.props.getUserData(id);
   }
 
-  // handleChange = event => {
-  //   this.setState({ [event.target.name]: event.target.value });
-  // };
-
   handleImageEditChange = () => {
     const fileInput = document.getElementById('imageUrl');
     fileInput.click();
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-
-    console.log('hello', this.nameInput);
-
-    // const { id } = this.props.match.params;
-
-    // this.props.updateProfile(userUpdate, this.props.history);
   };
 
   handleImageChange(e) {
@@ -71,8 +71,6 @@ class Updateprofile extends Component {
           });
       }
     );
-    console.log('here is the file', file.name);
-
     reader.onloadend = () => {
       this.setState({
         file: file,
@@ -83,14 +81,37 @@ class Updateprofile extends Component {
     reader.readAsDataURL(file);
   }
 
+  handleSubmit = event => {
+    event.preventDefault();
+
+    console.log('ref', this.nameInput.current.value);
+    console.log('here is state', this.state);
+    const userUpdate = {
+      name: this.nameInput.current.value,
+      firstName: this.firstNameInput.current.value,
+      lastName: this.lastNameInput.current.value,
+      country: this.countryInput.current.value,
+      address: this.addressInput.current.value,
+      phone: this.phoneInput.current.value,
+      imageUrl: this.state.url
+    };
+    console.log('update', userUpdate);
+
+    this.props.updateUserProfile(userUpdate, this.props.history);
+  };
+
   render() {
+    console.log('react ref', this.state);
     const { imagePreviewUrl } = this.state;
     if (!this.props.userProfile.userDetails) {
       return <div className="preloading-profile" />;
     }
+    const { imageUrl } = this.props.userProfile.userDetails;
+    console.log('here is props', this.props);
     return (
-      <div className="profile-picture-upload">
-        {imagePreviewUrl ? (
+      <div className="profile-container">
+        <i className="fas fa-user-circle image-placeholder" />
+        {imagePreviewUrl.length > 3 ? (
           <img
             className="profile-image"
             src={imagePreviewUrl}
@@ -98,7 +119,7 @@ class Updateprofile extends Component {
           />
         ) : (
           <div className="profile-image-none">
-            <i className="fas fa-user-circle" />
+            <img className="profile-image" src={imageUrl} alt="profile image" />
           </div>
         )}
 
@@ -117,7 +138,6 @@ class Updateprofile extends Component {
             accept="image/png, image/jpeg"
             label="imageUrl"
             hidden="hidden"
-            // defaultValue={this.props.userProfile.userDetails.imageUrl}
             onChange={e => this.handleImageChange(e)}
           />
 
@@ -126,65 +146,88 @@ class Updateprofile extends Component {
             className="fas fa-pencil-alt pencil"
           />
 
-          <TextField
-            id="address"
-            name="address"
-            type="text"
-            label="address"
-            ref={this.addressIn}
-            defaultValue={this.props.userProfile.userDetails.address}
-            fullWidth
-          />
-          <TextField
-            id="country"
-            name="country"
-            type="text"
-            label="country"
-            ref={this.countryInput}
-            defaultValue={this.props.userProfile.userDetails.country}
-            fullWidth
-          />
+          <div className="container-profile-input">
+            <label htmlFor="nameInput" className="profile-label">
+              User name
+            </label>
+            <input
+              className="profile-input"
+              type="text"
+              name="nameInput"
+              ref={this.nameInput}
+              defaultValue={this.props.userProfile.userDetails.name}
+            />
+          </div>
 
-          <TextField
-            id="firstName"
-            name="firstName"
-            type="text"
-            label="firstName"
-            ref={this.firstNameInput}
-            defaultValue={this.props.userProfile.userDetails.firstName}
-            fullWidth
-          />
+          <div className="container-profile-input">
+            <label htmlFor="firstName" className="profile-label">
+              First name
+            </label>
 
-          <TextField
-            id="lastName"
-            name="lastName"
-            type="text"
-            label="lastName"
-            ref={this.lastNameInput}
-            defaultValue={this.props.userProfile.userDetails.lastName}
-            fullWidth
-          />
+            <input
+              className="profile-input"
+              name="firstName"
+              type="text"
+              ref={this.firstNameInput}
+              defaultValue={this.props.userProfile.userDetails.firstName}
+            />
+          </div>
 
-          <input
-            id="name"
-            name="name"
-            type="text"
-            label="user name"
-            ref={this.nameInput}
-            defaultValue={this.props.userProfile.userDetails.name}
-            inputProps={{ 'aria-label': 'description' }}
-            fullWidth
-          />
+          <div className="container-profile-input">
+            <label htmlFor="lastName" className="profile-label">
+              Last name
+            </label>
 
-          <TextField
-            id="phone"
-            name="phone"
-            type="tel"
-            label="phone"
-            ref={this.phoneInput}
-            defaultValue={this.props.userProfile.userDetails.phone}
-            fullWidth
-          />
+            <input
+              className="profile-input"
+              name="lastName"
+              type="text"
+              ref={this.lastNameInput}
+              defaultValue={this.props.userProfile.userDetails.lastName}
+            />
+          </div>
+
+          <div className="container-profile-input">
+            <label htmlFor="phone" className="profile-label">
+              Phone no
+            </label>
+
+            <input
+              className="profile-input"
+              name="phone"
+              type="tel"
+              ref={this.phoneInput}
+              defaultValue={this.props.userProfile.userDetails.phone}
+            />
+          </div>
+
+          <div className="container-profile-input">
+            <label htmlFor="country" className="profile-label">
+              Address
+            </label>
+
+            <input
+              className="profile-input"
+              name="address"
+              type="text"
+              ref={this.addressInput}
+              defaultValue={this.props.userProfile.userDetails.address}
+            />
+          </div>
+
+          <div className="container-profile-input">
+            <label htmlFor="country" className="profile-label">
+              Country
+            </label>
+
+            <input
+              className="profile-input"
+              name="country"
+              type="text"
+              ref={this.countryInput}
+              defaultValue={this.props.userProfile.userDetails.country}
+            />
+          </div>
           <button className="profile-btn">save</button>
         </form>
       </div>
@@ -196,6 +239,7 @@ const mapStateToProps = state => ({
   userProfile: state.user.userProfile
 });
 
-export default connect(mapStateToProps, { getUserData, updateProfile })(
-  Updateprofile
-);
+export default connect(mapStateToProps, {
+  getUserData,
+  updateUserProfile
+})(Updateprofile);
