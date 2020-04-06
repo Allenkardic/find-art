@@ -8,7 +8,8 @@ import {
   BID_MESSAGE,
   MY_ARTWORKS,
   CLEAR_ERROR,
-  UI_LOADING
+  UI_LOADING,
+  CREATE_ARTWORK
 } from './types';
 
 export const getArtworks = () => dispatch => {
@@ -60,6 +61,18 @@ export const myArtworks = () => dispatch => {
     .get('https://findartt.herokuapp.com/api/v1/art/owner/find')
     .then(response => {
       dispatch({ type: MY_ARTWORKS, payload: response.data.data });
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  dispatch({ type: CLEAR_ERROR });
+};
+
+export const createArtwork = artwork => dispatch => {
+  axios
+    .post('https://findartt.herokuapp.com/api/v1/art/create', artwork)
+    .then(response => {
+      dispatch({ type: CREATE_ARTWORK, payload: response.data.message });
     })
     .catch(error => {
       console.log(error);

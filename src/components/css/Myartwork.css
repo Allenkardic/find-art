@@ -1,0 +1,149 @@
+.add-myartwork-form {
+  display: none;
+  position: fixed;
+  z-index: 2;
+  /* border: 2px solid red; */
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  padding: 0 0.5rem 1rem 0.5rem;
+  white-space: pre-line;
+  top: 4rem;
+  box-shadow: 1px 1px 10px 1px rgb(148, 146, 146);
+}
+
+.close-create-artwork {
+  font-size: 1.3em;
+  float: right;
+  margin: 0.5rem 0.2rem 0.5rem 0;
+  color: red;
+  /* background-color: red; */
+}
+
+.container-createartwork-input {
+  margin-top: 1rem;
+}
+
+.progress-bar-1 {
+  width: 100%;
+}
+
+.progress-bar {
+  width: 100%;
+  margin-bottom: 0.7rem;
+}
+
+.createartwork-input {
+  width: 100%;
+  height: 4vh;
+  border: 1px solid rgb(139, 138, 138);
+}
+
+.description {
+  height: 7vh;
+}
+
+.change-btn {
+  /* float: center; */
+  margin-top: 0.7rem;
+  padding: 0.4rem;
+  width: 100%;
+  text-align: center;
+  background: rgb(116, 4, 4);
+  color: white;
+  border: none;
+}
+
+.myartwork {
+  /* position: relative; */
+  border: 0.5 solid red;
+}
+
+.add-myartwork {
+  border: none;
+  position: fixed;
+  left: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  top: 2rem;
+  color: #020c13f5;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem;
+  /* width: 80px; */
+  background-color: rgb(215, 216, 132);
+  z-index: 1;
+  box-shadow: 1px 1px 10px 1px rgb(148, 146, 146);
+}
+
+/* leave this for now */
+/* this are the image size and the artwork size */
+.container-myartwork {
+  justify-content: space-evenly;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 4rem;
+}
+
+.container-myartwork-url,
+.myartwork-url {
+  width: 400px;
+  height: auto;
+  padding: 0.5rem 0.5rem;
+  margin-bottom: 3rem;
+}
+
+@media screen and (max-width: 768px) {
+  .add-myartwork-form {
+    position: fixed;
+    z-index: 2;
+    /* border: 2px solid red; */
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    padding: 0 0.5rem 1rem 0.5rem;
+    white-space: pre-line;
+    top: 4rem;
+    box-shadow: 1px 1px 10px 1px rgb(148, 146, 146);
+  }
+
+  /* leave this for now */
+  /* this are the image size and the artwork size */
+  .container-myartwork-url,
+  .myartwork-url {
+    width: 400px;
+    height: auto;
+    padding: 0.5rem 0.5rem;
+    margin-bottom: 3rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .add-myartwork-form {
+    position: fixed;
+    z-index: 2;
+    /* border: 2px solid red; */
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    padding: 0 0.5rem 1rem 0.5rem;
+    white-space: pre-line;
+    top: 4rem;
+    box-shadow: 1px 1px 10px 1px rgb(148, 146, 146);
+  }
+
+  /* leave this for now */
+  /* this are the image size and the artwork size */
+  .container-myartwork-url,
+  .myartwork-url {
+    width: 95%;
+    /* height: auto; */
+    margin: auto;
+  }
+}

@@ -5,11 +5,19 @@ import '../css/Navbar.css';
 
 class Navbar extends Component {
   closeButton = () => {
-    document.getElementById('mySideNav').style.width = '0px';
+    const mySideNav = document.getElementById('mySideNav');
+    mySideNav.style.cssText = 'width: 0px';
+
+    const body = document.querySelector('body');
+    body.style.cssText = 'overflow: visible; opacity:1';
   };
 
   openButton = () => {
-    document.getElementById('mySideNav').style.width = '300px';
+    const mySideNav = document.getElementById('mySideNav');
+    mySideNav.style.cssText = 'width: 300px; opacity:1';
+
+    const body = document.querySelector('body');
+    body.style.cssText = 'overflow: hidden';
   };
 
   render() {

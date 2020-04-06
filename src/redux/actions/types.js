@@ -15,6 +15,7 @@ export const GET_ARTWORK = 'GET_ARTTWORK';
 export const BID_ARTWORK = 'BID_ARTTWORK';
 export const BID_MESSAGE = 'BID_MESSAGE';
 export const MY_ARTWORKS = 'MY_ARTWORKS';
+export const CREATE_ARTWORK = 'CREATE_ARTWORK';
 export const CLEAR_ERROR_ART = 'CLEAR_ERROR_ART';
 
 // user profile

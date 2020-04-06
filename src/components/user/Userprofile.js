@@ -15,7 +15,7 @@ class Userprofile extends Component {
     if (!this.props.userProfile.userDetails) {
       return <div className="preloading-profile" />;
     }
-
+    const check = 0;
     const {
       imageUrl,
       name,
@@ -26,18 +26,17 @@ class Userprofile extends Component {
     } = this.props.userProfile.userDetails;
     return (
       <div className="profile-container">
-        {imageUrl !== null ? (
-          <img className="profile-image" src={imageUrl} alt="profile picture" />
-        ) : (
+        {imageUrl.length === check ? (
           <div className="profile-image-none">
             <i className="fas fa-user-circle" />
           </div>
+        ) : (
+          <img className="profile-image" src={imageUrl} alt="profile picture" />
         )}
 
         <div className="profile-container-item profile-username">
           <i className="fas fa-at" /> {name}
         </div>
-
         <div className="profile-container-item ">
           {phone === '' ? null : (
             <span>
@@ -69,7 +68,6 @@ class Userprofile extends Component {
             </span>
           )}
         </div>
-
         <div>
           <Link
             to={`/user/profile/update/${this.props.userProfile.userDetails.id}`}

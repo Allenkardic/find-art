@@ -4,6 +4,7 @@ import {
   BID_ARTWORK,
   MY_ARTWORKS,
   BID_MESSAGE,
+  CREATE_ARTWORK,
   CLEAR_ERROR
 } from '../actions/types';
 
@@ -11,7 +12,8 @@ const initialState = {
   singleArtwork: {},
   artworks: [],
   userArtworks: [],
-  artworkbidMessage: []
+  artworkbidMessage: [],
+  createArtworkMessage: ''
 };
 
 export default function(state = initialState, action) {
@@ -42,6 +44,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         userArtworks: action.payload
+      };
+
+    case CREATE_ARTWORK:
+      return {
+        ...state,
+        createArtworkMessage: action.payload
       };
 
     case CLEAR_ERROR:

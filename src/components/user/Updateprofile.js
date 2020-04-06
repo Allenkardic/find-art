@@ -107,11 +107,12 @@ class Updateprofile extends Component {
       return <div className="preloading-profile" />;
     }
     const { imageUrl } = this.props.userProfile.userDetails;
+    const check = 0;
     console.log('here is props', this.props);
     return (
       <div className="profile-container">
         <i className="fas fa-user-circle image-placeholder" />
-        {imagePreviewUrl.length > 3 ? (
+        {imagePreviewUrl.length === 3 ? (
           <img
             className="profile-image"
             src={imagePreviewUrl}

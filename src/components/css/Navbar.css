@@ -54,8 +54,17 @@
 @media screen and (max-height: 450px) {
   .sidenav {
     padding-top: 2rem;
+    position: fixed;
   }
   .sidenav a {
     font-size: 18px;
+  }
+
+  .close-bars {
+    position: fixed;
+    color: #020c13f5;
+    top: 0;
+    padding: 2rem 0 0 2rem;
+    font-size: 1.5em;
   }
 }

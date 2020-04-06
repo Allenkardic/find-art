@@ -1,18 +1,14 @@
-import React, { Component } from 'react';
-import '../css/Artwork.css';
+import React from 'react';
+import '../css/Myartwork.css';
 
-class Myartwork extends Component {
-  render() {
-    const { imageUrl, name, description } = this.props.userArtworks;
-    return (
-      <div className="container-home-url">
-        <div>
-          <img className="home-url" src={imageUrl} alt="art work" />
-        </div>
-        <div className="home-description">Artwork name: {name}</div>
-        <div className="home-description">Description: {description}</div>
-      </div>
-    );
-  }
-}
+const Myartwork = props => {
+  const { imageUrl, name, description } = props.userArtworks;
+  return (
+    <div className="container-myartwork-url">
+      <img className="myartwork-url" src={imageUrl} alt="art work" />
+      <div className="myartwork-description">Artwork name: {name}</div>
+      <div className="myartwork-description">Description: {description}</div>
+    </div>
+  );
+};
 export default Myartwork;
