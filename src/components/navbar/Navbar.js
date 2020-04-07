@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { logout } from '../../redux/actions/authAction';
 import '../css/Navbar.css';
 
 class Navbar extends Component {
+  signoutUser = () => {
+    this.props.logout();
+  };
+
   closeButton = () => {
     const mySideNav = document.getElementById('mySideNav');
     mySideNav.style.cssText = 'width: 0px';
@@ -60,9 +65,10 @@ class Navbar extends Component {
               <Link className="style-link" to="/logout">
                 <i className="fas fa-sign-out-alt " />
               </Link>
-              <Link className="style-link" to="/logout">
-                <div className="nav-link">logout</div>
-              </Link>
+
+              <div className="nav-link" onClick={this.signoutUser}>
+                logout {this.props.logoutInfo.ui_loading && <div>hello</div>}
+              </div>
             </div>
           </div>
 
@@ -75,7 +81,8 @@ class Navbar extends Component {
 }
 
 const mapStateToProps = state => ({
-  authenticated: state.auth.authenticated
+  authenticated: state.auth.authenticated,
+  logoutInfo: state.auth
 });
 
-export default connect(mapStateToProps)(Navbar);
+export default connect(mapStateToProps, { logout })(Navbar);

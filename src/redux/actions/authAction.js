@@ -51,7 +51,7 @@ export const signupUser = (newUser, history) => dispatch => {
     });
 };
 
-export const logout = history => dispatch => {
+export const logout = () => dispatch => {
   dispatch({ type: UI_LOADING });
   axios
     .post('https://findartt.herokuapp.com/api/v1/auth/logout')
@@ -62,7 +62,7 @@ export const logout = history => dispatch => {
         type: SET_UNAUTHENTICATED
       });
       dispatch({ type: CLEAR_ERROR });
-      history.push('/');
+      // history.push('/');
     })
     .catch(error => {
       console.log(error);

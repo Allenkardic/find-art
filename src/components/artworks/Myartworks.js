@@ -176,7 +176,11 @@ const Myartworks = props => {
 
   const { userArtworks } = props;
   console.log('myartwork', props);
-  console.log('createmyartwork', props.createArtworkMessage.nessage);
+  console.log(
+    'createmyartworkMeassage',
+    props.createArtworkMessage.createArtworkMessage.length
+  );
+  const check = 28;
   return (
     <div>
       <div className="add-myartwork-form">
@@ -186,7 +190,9 @@ const Myartworks = props => {
             className="far fa-window-close close-create-artwork"
           />
         </div>
-        <div style={{ color: 'red' }}>{props.createArtworkMessage.message}</div>
+        <div style={{ color: 'blue', fontSize: '1.2em' }}>
+          {props.createArtworkMessage.createArtworkMessage}
+        </div>
         <div className="container-createartwork-input">
           <progress
             value={imageProgress}
