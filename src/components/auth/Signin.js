@@ -11,7 +11,7 @@ import TextField from '@material-ui/core/TextField';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { connect } from 'react-redux';
 import Logo from '../images/findart.png';
-import { signinUser } from '../../redux/actions/authAction';
+import { signinUser, googleSignin } from '../../redux/actions/authAction';
 
 class Signin extends Component {
   constructor() {
@@ -21,6 +21,10 @@ class Signin extends Component {
       password: ''
     };
   }
+
+  googleLogin = () => {
+    this.props.googleSignin();
+  };
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
@@ -46,91 +50,101 @@ class Signin extends Component {
   };
 
   render() {
-    const { email, password } = this.state;
+    if (this.props.authenticated !== true) {
+      const { email, password } = this.state;
 
-    return (
-      <div className="form-container">
-        <div>
-          <h3 className="form-bid">
-            Bid for artworks, Add artworks to your collections. Change profile
-            picture and many more
-          </h3>{' '}
-        </div>
-
-        <div className="form-container-items">
-          <div className="form-container-items-content">
-            <div className="form-box">
-              <img className="art-logo" src={Logo} alt="logo" />
-
-              <div>
-                {this.props.signinInfo.errors_login ? (
-                  <h3 style={{ color: 'red' }}>
-                    {this.props.signinInfo.errors_login}
-                  </h3>
-                ) : null}
-              </div>
-
-              <form action="" onSubmit={this.handleSubmit}>
-                <TextField
-                  id="email"
-                  name="email"
-                  type="email"
-                  label="Email"
-                  value={email}
-                  onChange={this.handleChange}
-                  fullWidth
-                  required
+      return (
+        <div className="form-container">
+          <img className="art-logo" src={Logo} alt="logo" />
+          <hr />
+          <h1 className="form-bid">Artwork market place</h1>{' '}
+          <div className="form-box">
+            <button
+              onClick={this.googleLogin}
+              className="btn-default google-login"
+              disabled={this.props.signinInfo.ui_loading}
+            >
+              Google Login
+              {this.props.signinInfo.ui_loading && (
+                <CircularProgress
+                  className="btn-default-progress"
+                  disableShrink
+                  size="1.3rem"
+                  thickness="10"
                 />
+              )}
+            </button>
+            <div>
+              {this.props.signinInfo.errors_login ? (
+                <h3 style={{ color: 'red' }}>
+                  {this.props.signinInfo.errors_login}
+                </h3>
+              ) : null}
+            </div>
 
-                <TextField
-                  id="password"
-                  name="password"
-                  type="password"
-                  label="Password"
-                  value={password}
-                  onChange={this.handleChange}
-                  fullWidth
-                  required
-                  style={{ marginBottom: '1rem' }}
-                />
+            <form action="" onSubmit={this.handleSubmit}>
+              <TextField
+                id="email"
+                name="email"
+                type="email"
+                label="Email"
+                value={email}
+                onChange={this.handleChange}
+                fullWidth
+                required
+              />
 
-                <button
-                  className="btn-default"
-                  disabled={this.props.signinInfo.ui_loading}
-                >
-                  Login
-                  {this.props.signinInfo.ui_loading && (
-                    <CircularProgress
-                      className="btn-default-progress"
-                      disableShrink
-                      size="1.3rem"
-                      thickness="10"
-                    />
-                  )}
-                </button>
-              </form>
+              <TextField
+                id="password"
+                name="password"
+                type="password"
+                label="Password"
+                value={password}
+                onChange={this.handleChange}
+                fullWidth
+                required
+                style={{ marginBottom: '1rem' }}
+              />
 
-              <div>
-                Don't have an account{' '}
-                <Link to="/signup">
-                  <span>Sign up for free</span>
-                </Link>{' '}
-              </div>
+              <button
+                className="btn-default"
+                disabled={this.props.signinInfo.ui_loading}
+              >
+                Login
+                {this.props.signinInfo.ui_loading && (
+                  <CircularProgress
+                    className="btn-default-progress"
+                    disableShrink
+                    size="1.3rem"
+                    thickness="10"
+                  />
+                )}
+              </button>
+            </form>
+
+            <div>
+              Don't have an account{' '}
+              <Link to="/signup">
+                <span>Sign up for free</span>
+              </Link>{' '}
             </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    }
+    return <div>You are already login Navigate pages</div>;
   }
 }
 
 Signin.propTypes = {
   signinUser: PropTypes.func.isRequired,
+  googleSignin: PropTypes.func.isRequired,
   signinInfo: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  signinInfo: state.auth
+  signinInfo: state.auth,
+  authenticated: state.auth.authenticated
 });
 
-export default connect(mapStateToProps, { signinUser })(Signin);
+export default connect(mapStateToProps, { signinUser, googleSignin })(Signin);

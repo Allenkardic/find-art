@@ -12,6 +12,24 @@ import {
   CLEAR_ERROR
 } from './types';
 
+export const googleSignin = history => dispatch => {
+  dispatch({ type: UI_LOADING });
+  axios
+    .post('https://findartt.herokuapp.com/api/v1/auth/login/google')
+    .then(response => {
+      const userToken = response.data.data.tokenInfo.accessToken;
+      localStorage.setItem('token', userToken);
+      axios.defaults.headers.common.Authorization = userToken;
+      dispatch({ type: SET_AUTHENTICATED });
+      dispatch({ type: CLEAR_ERROR });
+      history.push('/artworks');
+    })
+    .catch(error => {
+      console.log(error.response.data.message);
+      dispatch({ type: SET_ERROR_LOGIN, payload: error.response.data.message });
+    });
+};
+
 export const signinUser = (existingUser, history) => dispatch => {
   dispatch({ type: UI_LOADING });
   axios

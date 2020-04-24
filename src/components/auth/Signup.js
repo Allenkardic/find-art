@@ -77,120 +77,114 @@ class Signup extends Component {
     } = this.state;
     return (
       <div className="form-container">
-        <div className="form-container-items">
-          <div className="form-container-items-content">
-            <div className="form-box">
-              <img className="art-logo" src={Logo} alt="logo" />
+        <img className="art-logo" src={Logo} alt="logo" />
+        <hr />
+        <h1 className="form-bid">Artwork market place</h1>{' '}
+        <div className="form-box">
+          <div>
+            {this.props.signupInfo.errors_signup ? (
+              <h3 style={{ color: 'red' }}>
+                {this.props.signupInfo.errors_signup}
+              </h3>
+            ) : null}
+          </div>
 
-              <div>
-                {this.props.signupInfo.errors_signup ? (
-                  <h1 style={{ color: 'red' }}>
-                    {this.props.signupInfo.errors_signup}
-                  </h1>
-                ) : null}
-              </div>
+          <ValidatorForm onSubmit={this.handleSubmit}>
+            <TextField
+              id="email"
+              name="email"
+              type="email"
+              label="Email"
+              value={email}
+              onChange={this.handleChange}
+              fullWidth
+              required
+            />
 
-              <ValidatorForm onSubmit={this.handleSubmit}>
-                <TextField
-                  id="email"
-                  name="email"
-                  type="email"
-                  label="Email"
-                  value={email}
-                  onChange={this.handleChange}
-                  fullWidth
-                  required
+            <TextField
+              id="firstName"
+              name="firstName"
+              type="firstName"
+              label="First name"
+              value={firstName}
+              onChange={this.handleChange}
+              fullWidth
+              required
+            />
+
+            <TextField
+              id="lastName"
+              name="lastName"
+              type="lastName"
+              label="Last name"
+              value={lastName}
+              onChange={this.handleChange}
+              fullWidth
+              required
+            />
+
+            <TextField
+              id="phone"
+              name="phone"
+              type="tel"
+              label="Phone"
+              value={phone}
+              onChange={this.handleChange}
+              fullWidth
+              required
+            />
+
+            <TextField
+              id="country"
+              name="country"
+              type="country"
+              label="Country"
+              value={country}
+              onChange={this.handleChange}
+              fullWidth
+              required={true}
+            />
+
+            <TextValidator
+              label="Password"
+              onChange={this.handleChange}
+              name="password"
+              type="password"
+              validators={['required']}
+              errorMessages={['this field is required']}
+              value={password}
+              fullWidth
+            />
+            <TextValidator
+              label="Confirm password"
+              onChange={this.handleChange}
+              name="repeatPassword"
+              type="password"
+              validators={['isPasswordMatch', 'required']}
+              errorMessages={['password mismatch', 'this field is required']}
+              value={repeatPassword}
+              fullWidth
+              style={{ marginBottom: '1rem' }}
+            />
+
+            <button className="btn-default">
+              Sign Up
+              {this.props.signupInfo.ui_loading && (
+                <CircularProgress
+                  className="btn-default-progress"
+                  disableShrink
+                  size="1.3rem"
+                  thickness="10"
                 />
+              )}
+            </button>
+          </ValidatorForm>
 
-                <TextField
-                  id="firstName"
-                  name="firstName"
-                  type="firstName"
-                  label="First name"
-                  value={firstName}
-                  onChange={this.handleChange}
-                  fullWidth
-                  required
-                />
-
-                <TextField
-                  id="lastName"
-                  name="lastName"
-                  type="lastName"
-                  label="Last name"
-                  value={lastName}
-                  onChange={this.handleChange}
-                  fullWidth
-                  required
-                />
-
-                <TextField
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  label="Phone"
-                  value={phone}
-                  onChange={this.handleChange}
-                  fullWidth
-                  required
-                />
-
-                <TextField
-                  id="country"
-                  name="country"
-                  type="country"
-                  label="Country"
-                  value={country}
-                  onChange={this.handleChange}
-                  fullWidth
-                  required={true}
-                />
-
-                <TextValidator
-                  label="Password"
-                  onChange={this.handleChange}
-                  name="password"
-                  type="password"
-                  validators={['required']}
-                  errorMessages={['this field is required']}
-                  value={password}
-                  fullWidth
-                />
-                <TextValidator
-                  label="Confirm password"
-                  onChange={this.handleChange}
-                  name="repeatPassword"
-                  type="password"
-                  validators={['isPasswordMatch', 'required']}
-                  errorMessages={[
-                    'password mismatch',
-                    'this field is required'
-                  ]}
-                  value={repeatPassword}
-                  fullWidth
-                  style={{ marginBottom: '1rem' }}
-                />
-
-                <button className="btn-default">
-                  Sign Up
-                  {this.props.signupInfo.ui_loading && (
-                    <CircularProgress
-                      className="btn-default-progress"
-                      disableShrink
-                      size="1.3rem"
-                      thickness="10"
-                    />
-                  )}
-                </button>
-              </ValidatorForm>
-
-              <div>
-                Already have an account{' '}
-                <Link to="/">
-                  <span>Login</span>
-                </Link>
-              </div>
-            </div>
+          <div>
+            Already have an account{' '}
+            <Link to="/">
+              <span>Login</span>
+            </Link>
           </div>
         </div>
       </div>
