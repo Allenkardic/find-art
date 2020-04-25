@@ -143,7 +143,7 @@ const ArtworkBid = props => {
           {props.artworkbidMessage}
         </div>
         <div>
-          <form className="form-container" action="" onSubmit={handleSubmit}>
+          <form className="table-container" action="" onSubmit={handleSubmit}>
             <TextField
               id="amount"
               name="amount"

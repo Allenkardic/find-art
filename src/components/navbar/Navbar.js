@@ -67,7 +67,7 @@ class Navbar extends Component {
               </Link>
 
               <div className="nav-link" onClick={this.signoutUser}>
-                logout {this.props.logoutInfo.ui_loading && <div>hello</div>}
+                logout {this.props.logoutInfo.ui_loading}
               </div>
             </div>
           </div>

@@ -59,21 +59,6 @@ class Signin extends Component {
           <hr />
           <h1 className="form-bid">Artwork market place</h1>{' '}
           <div className="form-box">
-            <button
-              onClick={this.googleLogin}
-              className="btn-default google-login"
-              disabled={this.props.signinInfo.ui_loading}
-            >
-              Google Login
-              {this.props.signinInfo.ui_loading && (
-                <CircularProgress
-                  className="btn-default-progress"
-                  disableShrink
-                  size="1.3rem"
-                  thickness="10"
-                />
-              )}
-            </button>
             <div>
               {this.props.signinInfo.errors_login ? (
                 <h3 style={{ color: 'red' }}>

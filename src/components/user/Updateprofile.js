@@ -67,7 +67,6 @@ class Updateprofile extends Component {
           .getDownloadURL()
           .then(url => {
             this.setState({ url });
-            console.log('here is url', this.state);
           });
       }
     );
@@ -101,35 +100,19 @@ class Updateprofile extends Component {
   };
 
   render() {
-    console.log('react ref', this.state);
     if (!this.props.userProfile.userDetails) {
       return <div className="preloading-profile" />;
     }
     const { imageUrl } = this.props.userProfile.userDetails;
-    const check = 0;
     const { imagePreviewUrl, url } = this.state;
     console.log('here is props', this.props);
     return (
       <div className="profile-container">
-        <i className="fas fa-user-circle image-placeholder" />
-        {imagePreviewUrl.typeof === 'string' ? (
-          <img
-            className="profile-image"
-            src={imagePreviewUrl || url}
-            alt="profilePicture"
-          />
-        ) : (
-          <div className="profile-image-none">
-            {/* <img
-              className="profile-image"
-              src={
-                imageUrl
-              }
-              alt="profile image"
-            /> */}
-            loading
-          </div>
-        )}
+        <img
+          className="profile-image"
+          src={`${url}` || `https://ipsumimage.appspot.com/640x360`}
+          alt="profilePicture"
+        />
 
         <form
           action=""

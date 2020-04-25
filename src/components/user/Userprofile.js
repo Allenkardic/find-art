@@ -26,13 +26,11 @@ class Userprofile extends Component {
     } = this.props.userProfile.userDetails;
     return (
       <div className="profile-container">
-        {imageUrl.length === check ? (
-          <div className="profile-image-none">
-            <i className="fas fa-user-circle" />
-          </div>
-        ) : (
-          <img className="profile-image" src={imageUrl} alt="profile picture" />
-        )}
+        <img
+          className="profile-image"
+          src={`https://ipsumimage.appspot.com/640x360` || `${imageUrl}`}
+          alt="profile picture"
+        />
 
         <div className="profile-container-item profile-username">
           <i className="fas fa-at" /> {name}
