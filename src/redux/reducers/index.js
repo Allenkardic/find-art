@@ -7,6 +7,7 @@ import storage from 'redux-persist/lib/storage';
 import authReducer from './authReducer';
 import userReducer from './userReducer';
 import artworkReducer from './artworkReducer';
+import uiReducer from './uiReducer';
 
 const persistConfig = {
   key: 'root',
@@ -16,6 +17,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  ui: uiReducer,
   user: userReducer,
   artwork: artworkReducer
 });

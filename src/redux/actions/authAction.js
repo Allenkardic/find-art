@@ -11,6 +11,7 @@ import {
   UI_LOADING,
   CLEAR_ERROR
 } from './types';
+import { notification } from 'antd';
 
 export const googleSignin = history => dispatch => {
   dispatch({ type: UI_LOADING });
@@ -31,7 +32,7 @@ export const googleSignin = history => dispatch => {
 };
 
 export const signinUser = (existingUser, history) => dispatch => {
-  dispatch({ type: UI_LOADING });
+  dispatch({ type: UI_LOADING, payload: true });
   axios
     .post('https://findartt.herokuapp.com/api/v1/auth/login', existingUser)
     .then(response => {
@@ -40,16 +41,25 @@ export const signinUser = (existingUser, history) => dispatch => {
       axios.defaults.headers.common.Authorization = userToken;
       dispatch({ type: SET_AUTHENTICATED });
       dispatch({ type: CLEAR_ERROR });
+      dispatch({ type: UI_LOADING, payload: false });
       history.push('/artworks');
     })
     .catch(error => {
+      dispatch({ type: UI_LOADING, payload: false });
       console.log(error.response.data.message);
+      notification.error({
+        message: 'Invalid details',
+        description: error.response.data.message,
+        placement: 'topRight',
+        duration: 10,
+        rtl: true
+      });
       dispatch({ type: SET_ERROR_LOGIN, payload: error.response.data.message });
     });
 };
 
 export const signupUser = (newUser, history) => dispatch => {
-  dispatch({ type: UI_LOADING });
+  dispatch({ type: UI_LOADING, payload: true });
   axios
     .post('https://findartt.herokuapp.com/api/v1/auth/signup', newUser)
     .then(response => {
@@ -58,19 +68,27 @@ export const signupUser = (newUser, history) => dispatch => {
       axios.defaults.headers.common.Authorization = userToken;
       dispatch({ type: SET_AUTHENTICATED });
       dispatch({ type: CLEAR_ERROR });
+      dispatch({ type: UI_LOADING, payload: false });
       history.push('/artworks');
     })
     .catch(error => {
+      dispatch({ type: UI_LOADING, payload: false });
       dispatch({
         type: SET_ERROR_SIGNUP,
         payload: error.response.data.message
+      });
+      notification.error({
+        message: 'Invalid details',
+        description: error.response.data.message,
+        placement: 'topRight',
+        duration: 10,
+        rtl: true
       });
       console.log(error.response.data.message);
     });
 };
 
 export const logout = () => dispatch => {
-  dispatch({ type: UI_LOADING });
   axios
     .post('https://findartt.herokuapp.com/api/v1/auth/logout')
     .then(response => {
@@ -83,6 +101,13 @@ export const logout = () => dispatch => {
       // history.push('/');
     })
     .catch(error => {
+      notification.error({
+        message: 'Error',
+        description: error.response.data.message,
+        placement: 'topRight',
+        duration: 10,
+        rtl: true
+      });
       console.log(error);
     });
 };

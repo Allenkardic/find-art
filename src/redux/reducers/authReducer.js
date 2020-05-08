@@ -3,14 +3,12 @@ import {
   SET_UNAUTHENTICATED,
   SET_ERROR_LOGIN,
   SET_ERROR_SIGNUP,
-  UI_LOADING,
-  UI_NOLOADING,
+  // UI_LOADING,
   CLEAR_ERROR
 } from '../actions/types';
 
 const initialState = {
   authenticated: false,
-  ui_loading: false,
   errors_login: null,
   errors_signup: null
 };
@@ -20,7 +18,6 @@ export default function(state = initialState, action) {
     case SET_AUTHENTICATED:
       return {
         ...state,
-        ui_loading: false,
         authenticated: true
       };
 
@@ -28,40 +25,30 @@ export default function(state = initialState, action) {
       return {
         ...state,
         authenticated: false,
-        errors_login: null,
-        ui_loading: false
+        errors_login: null
       };
 
     case SET_ERROR_LOGIN:
       return {
         ...state,
-        errors_login: action.payload,
-        ui_loading: false
+        errors_login: action.payload
       };
 
     case SET_ERROR_SIGNUP:
       return {
         ...state,
-        errors_signup: action.payload,
-        ui_loading: false
+        errors_signup: action.payload
       };
 
-    case UI_LOADING:
-      return {
-        ...state,
-        ui_loading: true
-      };
-
-    case UI_NOLOADING:
-      return {
-        ...state,
-        ui_loading: false
-      };
+    // case UI_LOADING:
+    //   return {
+    //     ...state,
+    //     ui_loading: action.payload
+    //   };
 
     case CLEAR_ERROR:
       return {
-        ...state,
-        ui_loading: false
+        ...state
       };
 
     default:

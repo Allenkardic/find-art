@@ -15,7 +15,6 @@ class Userprofile extends Component {
     if (!this.props.userProfile.userDetails) {
       return <div className="preloading-profile" />;
     }
-    const check = 0;
     const {
       imageUrl,
       name,
@@ -28,7 +27,7 @@ class Userprofile extends Component {
       <div className="profile-container">
         <img
           className="profile-image"
-          src={`https://ipsumimage.appspot.com/640x360` || `${imageUrl}`}
+          src={`${imageUrl}` || `https://ipsumimage.appspot.com/640x360`}
           alt="profile picture"
         />
 
