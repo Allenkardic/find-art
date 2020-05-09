@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Spin } from 'antd';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 
@@ -101,36 +102,32 @@ const ArtworkBid = props => {
 
     // re-direct user to the home page if credentials are correct
   };
-
-  if (!props.singleArtwork.currentBid) {
-    return (
-      <div className="preload-artwork-container">
-        {' '}
-        <div className="preloading" />
-        <div className="preloading-bottom" />
-      </div>
-    );
+  if (props.isFetching === true) {
+    return <Spin />;
   }
-  console.log('failed billed', props.artworkbidMessage.length);
+  console.log('props', props);
+  console.log('isfetching', props.isFetching);
+  console.log('artworkBids', props.artworkBids);
+  console.log('artworkCurrentBids', props.artworkCurrentBid);
   return (
     <div className="container-artworkbid">
+      hello
       <img
         className="artworkbid-image"
-        src={props.singleArtwork.imageUrl}
+        src={props.artworkById.imageUrl}
         alt="art work"
       />
       <div className="date-created">
-        <div> Date created: {props.singleArtwork.createdDate}</div>
-        <div>Description: {props.singleArtwork.description}</div>{' '}
+        <div> Date created: {props.artworkById.createdDate}</div>
+        <div>Description: {props.artworkById.description}</div>{' '}
       </div>
-
       <div className="bid-container">
         <div className="minimum-bid">
           Minimum bid:{' '}
           <span style={{ paddingLeft: '0.5rem', paddingRight: '0.5rem' }}>
             &#8358;{' '}
           </span>
-          {props.singleArtwork.minimumAmount}
+          {props.artworkById.minimumAmount}
         </div>
 
         <div
@@ -158,9 +155,17 @@ const ArtworkBid = props => {
             <button className="btn-art">Make a Bid</button>
           </form>
         </div>
+        {/* 
+        <Table
+          columns={columns}
+          rowKey={record => record.login.uuid}
+          dataSource={data}
+          pagination={pagination}
+          loading={loading}
+          onChange={this.handleTableChange}
+        /> */}
 
-        {/* bid data */}
-        <Paper className={classes.root}>
+        {/* <Paper className={classes.root}>
           <TableContainer className={classes.container}>
             <Table stickyHeader aria-label="sticky table">
               <TableHead>
@@ -170,7 +175,7 @@ const ArtworkBid = props => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {props.singleArtwork.bids
+                {props.artworkBids
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map(bid => {
                     return (
@@ -206,21 +211,24 @@ const ArtworkBid = props => {
             onChangePage={handleChangePage}
             onChangeRowsPerPage={handleChangeRowsPerPage}
           />
-        </Paper>
+        </Paper> */}
       </div>
     </div>
   );
 };
 
 ArtworkBid.propTypes = {
-  singleArtwork: PropTypes.object.isRequired,
+  // singleArtwork: PropTypes.object.isRequired,
   artworkbidMessage: PropTypes.array.isRequired,
   getArtwork: PropTypes.func.isRequired,
   artworkBid: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  singleArtwork: state.artwork.singleArtwork,
+  isFetching: state.ui.isFetching_artwork,
+  artworkById: state.artwork.singleArtwork,
+  artworkBids: state.artwork.singleArtwork.bids,
+  artworkCurrentBid: state.artwork.singleArtwork.currentBid,
   artworkbidMessage: state.artwork.artworkbidMessage
 });
 export default connect(mapStateToProps, { getArtwork, artworkBid })(ArtworkBid);

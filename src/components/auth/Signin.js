@@ -102,7 +102,10 @@ function Signin(props) {
           </Form.Item>
         </Form.Item>
         <Form.Item>
-          <button type="primary" className="btn btn-medium form-auth-btn">
+          <button
+            disabled={!!props.signinInfo}
+            className="btn btn-medium form-auth-btn"
+          >
             Log in
             <Spin className="spinner" spinning={!!props.signinInfo} />
           </button>
@@ -113,112 +116,6 @@ function Signin(props) {
     </div>
   );
 }
-
-// class Signin extends Component {
-//   constructor() {
-//     super();
-//     this.state = {
-//       email: '',
-//       password: ''
-//     };
-//   }
-
-//   googleLogin = () => {
-//     this.props.googleSignin();
-//   };
-
-//   handleChange = event => {
-//     this.setState({ [event.target.name]: event.target.value });
-//   };
-
-//   handleSubmit = event => {
-//     event.preventDefault();
-
-//     const { email, password } = this.state;
-//     const existingUser = {
-//       email,
-//       password
-//     };
-
-//     this.props.signinUser(existingUser, this.props.history);
-
-//     this.setState({
-//       email: '',
-//       password: ''
-//     });
-//   };
-
-//   render() {
-//     if (this.props.authenticated !== true) {
-//       const { email, password } = this.state;
-
-//       return (
-//         <div className="form-container">
-//           <img className="art-logo" src={Logo} alt="logo" />
-//           <hr />
-//           <h1 className="form-bid">Artwork market place</h1>{' '}
-//           <div className="form-box">
-//             <div>
-//               {this.props.signinInfo.errors_login ? (
-//                 <h3 style={{ color: 'red' }}>
-//                   {this.props.signinInfo.errors_login}
-//                 </h3>
-//               ) : null}
-//             </div>
-
-//             <form action="" onSubmit={this.handleSubmit}>
-//               <TextField
-//                 id="email"
-//                 name="email"
-//                 type="email"
-//                 label="Email"
-//                 value={email}
-//                 onChange={this.handleChange}
-//                 fullWidth
-//                 required
-//               />
-
-//               <TextField
-//                 id="password"
-//                 name="password"
-//                 type="password"
-//                 label="Password"
-//                 value={password}
-//                 onChange={this.handleChange}
-//                 fullWidth
-//                 required
-//                 style={{ marginBottom: '1rem' }}
-//               />
-
-//               <button
-//                 className="btn-default"
-//                 disabled={this.props.signinInfo.ui_loading}
-//               >
-//                 Login
-//                 {this.props.signinInfo.ui_loading && (
-//                   <CircularProgress
-//                     className="btn-default-progress"
-//                     disableShrink
-//                     size="1.3rem"
-//                     thickness="10"
-//                   />
-//                 )}
-//               </button>
-//             </form>
-
-//             <div>
-//               Don't have an account{' '}
-//               <Link to="/signup">
-//                 <span>Sign up for free</span>
-//               </Link>{' '}
-//             </div>
-//           </div>
-//         </div>
-//       );
-//     }
-//     return <div>You are already login Navigate pages</div>;
-//   }
-// }
 
 Signin.propTypes = {
   signinUser: PropTypes.func.isRequired,

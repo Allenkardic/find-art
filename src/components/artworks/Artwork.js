@@ -8,21 +8,11 @@ class Artwork extends Component {
     const { id, imageUrl, name, description } = this.props.artworks;
     return (
       <div className="container-artwork-url">
-        <div>
-          <Link to={`/artwork/bid/${id}`}>
-            <img className="artwork-image" src={imageUrl} alt="art work" />
-          </Link>
-        </div>
-        <div className="artwork-description">
-          <div className="des-first">
-            <span className="artwork-description-title ">Art work name:</span>{' '}
-            {name}
-          </div>
-          <div>
-            <span className="artwork-description-title">Description:</span>{' '}
-            {description}
-          </div>
-        </div>
+        <Link to={`/artwork/bid/${id}`}>
+          <img className="artwork-image" src={imageUrl} alt="art work" />
+        </Link>
+        <div className="artwork-title">{name}</div>
+        <div className="artwork-description">{description}</div>
       </div>
     );
   }

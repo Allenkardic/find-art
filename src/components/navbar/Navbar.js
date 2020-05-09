@@ -1,39 +1,50 @@
 import React, { Component } from 'react';
+import { Drawer, Spin } from 'antd';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../redux/actions/authAction';
 import '../css/Navbar.css';
+import '../css/App.css';
 
 class Navbar extends Component {
+  state = { visible: false };
+
   signoutUser = () => {
     this.props.logout();
   };
-
-  closeButton = () => {
-    const mySideNav = document.getElementById('mySideNav');
-    mySideNav.style.cssText = 'width: 0px';
-
-    const body = document.querySelector('body');
-    body.style.cssText = 'overflow: visible; opacity:1';
+  // drawer start
+  showDrawer = () => {
+    this.setState({
+      visible: true
+    });
   };
 
-  openButton = () => {
-    const mySideNav = document.getElementById('mySideNav');
-    mySideNav.style.cssText = 'width: 300px; opacity:1';
-
-    const body = document.querySelector('body');
-    body.style.cssText = 'overflow: hidden';
+  onClose = () => {
+    this.setState({
+      visible: false
+    });
   };
+  // drawer end
 
   render() {
     if (this.props.authenticated === true) {
+      console.log(this.props);
       return (
         <div>
-          <div id="mySideNav" className="sidenav">
-            <div className="nav-share-link">
-              <i className="fas fa-bars open-bars" onClick={this.closeButton} />
-            </div>
-
+          <i className="fas fa-bars close-bars" onClick={this.showDrawer} />
+          <Drawer
+            headerStyle={{ backgroundColor: '#020c13f5' }}
+            bodyStyle={{
+              backgroundColor: '#020c13f5',
+              padding: '0',
+              margin: '0'
+            }}
+            width={300}
+            placement="left"
+            closable={false}
+            onClose={this.onClose}
+            visible={this.state.visible}
+          >
             <div className="nav-share-link">
               <Link className="style-link" to="/artworks">
                 <i className="fas fa-image " />
@@ -66,13 +77,19 @@ class Navbar extends Component {
                 <i className="fas fa-sign-out-alt " />
               </Link>
 
-              <div className="nav-link" onClick={this.signoutUser}>
-                logout {this.props.logoutInfo.ui_loading}
+              <div
+                className="nav-link nav-link-spin"
+                onClick={this.signoutUser}
+              >
+                logout
+                {/* {this.props.logoutInfo.ui_loading} */}
+                <Spin
+                  className="spinner-nav"
+                  spinning={!!this.props.logoutInfo}
+                />
               </div>
             </div>
-          </div>
-
-          <i className="fas fa-bars close-bars" onClick={this.openButton} />
+          </Drawer>
         </div>
       );
     }
@@ -82,7 +99,7 @@ class Navbar extends Component {
 
 const mapStateToProps = state => ({
   authenticated: state.auth.authenticated,
-  logoutInfo: state.auth
+  logoutInfo: state.ui.ui_loading_nav
 });
 
 export default connect(mapStateToProps, { logout })(Navbar);

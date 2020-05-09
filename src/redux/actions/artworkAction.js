@@ -9,32 +9,39 @@ import {
   MY_ARTWORKS,
   CLEAR_ERROR,
   UI_LOADING,
+  UI_LOADING_ARTWORK,
+  UI_LOADING_ARTWORKS,
+  UI_LOADING_ARTWORK_BID,
   CREATE_ARTWORK
 } from './types';
 
 export const getArtworks = () => dispatch => {
-  dispatch({ type: UI_LOADING });
+  dispatch({ type: UI_LOADING_ARTWORKS, payload: true });
   axios
     .get('https://findartt.herokuapp.com/api/v1/art/find')
     .then(response => {
       dispatch({ type: GET_ARTWORKS, payload: response.data.data });
+      dispatch({ type: UI_LOADING_ARTWORKS, payload: false });
       console.log(response.data.data);
     })
     .catch(error => {
+      dispatch({ type: UI_LOADING_ARTWORKS, payload: false });
       console.log(error);
     });
   dispatch({ type: CLEAR_ERROR });
 };
 
 export const getArtwork = id => dispatch => {
-  dispatch({ type: UI_LOADING });
+  dispatch({ type: UI_LOADING_ARTWORK, payload: true });
   axios
     .get(`https://findartt.herokuapp.com/api/v1/art/find/${id}/summary`)
     .then(response => {
       dispatch({ type: GET_ARTWORK, payload: response.data.data });
+      dispatch({ type: UI_LOADING_ARTWORK, payload: false });
       console.log(response.data.data);
     })
     .catch(error => {
+      dispatch({ type: UI_LOADING_ARTWORK, payload: false });
       console.log(error);
     });
   dispatch({ type: CLEAR_ERROR });

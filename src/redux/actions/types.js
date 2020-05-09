@@ -7,7 +7,10 @@ export const SET_ERROR_LOGIN = 'SET_ERROR_LOGIN';
 // General types
 export const CLEAR_ERROR = 'CLEAR_ERROR';
 export const UI_LOADING = 'UI_LOADING';
-export const UI_NOLOADING = 'UI_NOLOADING';
+export const UI_LOADING_NAV = 'UI_LOADING_NAV';
+export const UI_LOADING_ARTWORK = 'UI_LOADING_ARTWORK';
+export const UI_LOADING_ARTWORKS = 'UI_LOADING_ARTWORKS';
+export const UI_LOADING_ARTWORK_BID = 'UI_LOADING_ARTWORK_BID';
 
 // Artworks types
 export const GET_ARTWORKS = 'GET_ARTTWORKS';

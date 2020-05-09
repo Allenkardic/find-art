@@ -18,3 +18,92 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/*  */
+:root {
+  --color-grey-dark: hsl(211, 14, 23);
+  --color-grey-normal: rgb(122, 134, 145);
+  --color-grey-special: rgb(47, 79, 79);
+  --color-grey-light: rgb(193, 196, 206);
+  --color-blue-special: #020c13f5;
+  --color-blue-light: rgb(171, 171, 204);
+  --color-white-light: rgb(255, 255, 255);
+  --color-white-dark: rgb(245, 245, 245);
+
+  /* font size */
+  --fontSize-small: 12px;
+  --fontSize-medium: 14px;
+  --fontSize-large: 16px;
+  --fontSize-xlarge: 18px;
+  --fontSize-xxlarge: 20px;
+  --fontSize-title: 30px;
+
+  /* font width */
+  --fontWeight-light: 300;
+  --fontWeight-regular: 400;
+  --fontWeight-medium: 600;
+  --fontWeight-bold: 700;
+
+  /* --padding- */
+  --padding-small: 12px;
+  --padding-medium: 24px;
+  --padding-large: 32px;
+
+  /* margin */
+  --margin-vvsmall: 4px;
+  --margin-vsmall: 8px;
+  --margin-small: 24px;
+  --margin-medium: 48px;
+  --margin-large: 64px;
+  --margin-xlarge: 96px;
+
+  /* line-height */
+  --lineHeight-small: 1;
+  --lineHeight-medium: 1.5;
+  --lineHeight-large: 2;
+
+  /* box shadow */
+  --boxShadow-light: 0 3px 6px hsla(0, 0%, 0.15), 0 3px 6px hsla(0, 0%, 0.15);
+  --boxShadow-medium: 0 10px 20px hsla(0, 0%, 0.15), 0 3px 6px hsla(0, 0%, 0.1);
+  --boxShadow-dark: 0 15px 25px hsla(0, 0%, 0.15), 0 5px 10px hsla(0, 0%, 0.5);
+  --boxShadow-xdark: 0 20px 40px hsla(0, 0%, 0.2);
+
+  --borderRadius-small: 5px;
+  --borderRadius-medium: 10px;
+  --borderRadius-large: 50%;
+}
+
+/* utility class start */
+.btn {
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 4px hsla(0, 0%, 0.2);
+  border-radius: 4px;
+}
+.btn:hover {
+  box-shadow: 0 1px 3px hsla(0, 0%, 0.2);
+  border: none;
+}
+
+.btn-xlarge {
+  font-size: 20px;
+  padding: 15px 30px;
+}
+
+.btn-large {
+  font-size: 16px;
+  padding: 12px 16px;
+}
+
+.btn-medium {
+  font-size: 14px;
+  padding: 8px 10px;
+}
+
+.btn-small {
+  font-size: 12px;
+  padding: 6px 8px;
+}
+
+.box-shadow-light {
+  box-shadow: 0 3px 6px hsla(0, 0%, 0.15), 0 3px 6px hsla(0, 0%, 0.15);
+}

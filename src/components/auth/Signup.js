@@ -222,8 +222,8 @@ function Signup(props) {
         </Form.Item>
         <Form.Item>
           <button
-            type="primary"
             className="btn btn-medium form-auth-btn"
+            disabled={!!props.signupInfo}
             // className="login-form-button"
           >
             Signe up

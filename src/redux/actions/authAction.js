@@ -9,6 +9,7 @@ import {
   SET_ERROR_LOGIN,
   SET_ERROR_SIGNUP,
   UI_LOADING,
+  UI_LOADING_NAV,
   CLEAR_ERROR
 } from './types';
 import { notification } from 'antd';
@@ -89,6 +90,7 @@ export const signupUser = (newUser, history) => dispatch => {
 };
 
 export const logout = () => dispatch => {
+  dispatch({ type: UI_LOADING_NAV, payload: true });
   axios
     .post('https://findartt.herokuapp.com/api/v1/auth/logout')
     .then(response => {
@@ -98,9 +100,11 @@ export const logout = () => dispatch => {
         type: SET_UNAUTHENTICATED
       });
       dispatch({ type: CLEAR_ERROR });
+      dispatch({ type: UI_LOADING_NAV, payload: false });
       // history.push('/');
     })
     .catch(error => {
+      dispatch({ type: UI_LOADING_NAV, payload: false });
       notification.error({
         message: 'Error',
         description: error.response.data.message,
