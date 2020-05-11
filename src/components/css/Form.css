@@ -154,16 +154,13 @@
   box-shadow: 0 3px 6px hsla(0, 0%, 0.15), 0 3px 6px hsla(0, 0%, 0.15);
 }
 
+/* utility class end */
 .spinner {
-  /* margin: 0 auto; */
-  /* width: 100%; */
   left: 0;
-  /* right: 70px; */
   right: 0;
   position: absolute;
   top: 10px;
 }
-/* utility class end */
 
 @media screen and (max-width: 820px) {
   .form-auth {

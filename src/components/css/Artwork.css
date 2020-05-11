@@ -4,8 +4,10 @@
   --color-grey-special: rgb(47, 79, 79);
   --color-grey-light: rgb(193, 196, 206);
   --color-grey-background: rgb(232, 233, 238);
+  --color-blue-dark: #141e79f5;
   --color-blue-special: #020c13f5;
   --color-blue-light: rgb(171, 171, 204);
+  --color-blue-lite: rgb(188, 188, 228);
   --color-white-light: rgb(255, 255, 255);
   --color-white-dark: rgb(245, 245, 245);
 
@@ -16,6 +18,7 @@
   --fontSize-xlarge: 18px;
   --fontSize-xxlarge: 20px;
   --fontSize-title: 30px;
+  --fontSize-xtitle: 48px;
 
   /* font width */
   --fontWeight-light: 300;
@@ -24,9 +27,12 @@
   --fontWeight-bold: 700;
 
   /* --padding- */
-  --padding-small: 12px;
-  --padding-medium: 24px;
-  --padding-large: 32px;
+  --padding-vvsmall: 4px;
+  --padding-vsmall: 8px;
+  --padding-small: 24px;
+  --padding-medium: 48px;
+  --padding-large: 64px;
+  --padding-xlarge: 96px;
 
   /* margin */
   --margin-vvsmall: 4px;
@@ -50,6 +56,7 @@
   --borderRadius-small: 5px;
   --borderRadius-medium: 10px;
   --borderRadius-large: 50%;
+  --borderTop-width: 10px;
 }
 
 /* artworks css */
@@ -136,27 +143,88 @@
 
 /* artwork bid css starts */
 .container-artworkbid {
+  background-color: var(--color-white-light);
+  /* margin: auto; */
+  /* width: 600px; */
+}
+
+.bid-name-title {
+  font-size: var(--fontSize-xlarge);
+  margin-top: var(--margin-large);
+  margin-bottom: var(--margin-medium);
+  color: var(--color-grey-light);
+  margin-left: var(--margin-xlarge);
+}
+
+.bid-name {
+  color: var(--color-grey-special);
+  font-weight: var(--fontWeight-bold);
+}
+
+.container-artworkbid-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 1000px;
+  border: 1px solid red;
   margin: auto;
-  width: 600px;
+  /* margin-left: var(--margin-xlarge); */
 }
 
 .artworkbid-image {
-  margin-top: 0.2rem;
-  width: 100%;
+  width: 500px;
   max-width: 100%;
-  height: 500px;
+  height: 400px;
+  background-color: var(--color-grey-light);
   background-repeat: no-repeat;
   position: center;
+  border-radius: var(--borderRadius-medium);
 }
 
-.date-created {
-  color: #020c13f5;
-  margin: 1rem 0rem;
-}
-
-.bid-container {
+/* .bid-container {
+  width: 500px;
   margin: 4rem 0rem;
   padding-bottom: 2rem;
+} */
+
+.bid-container-1-1 {
+  border-radius: var(--boxShadow-dark);
+  border-radius: var(--borderRadius-medium);
+  padding-top: var(--padding-large);
+  padding-bottom: var(--padding-large);
+  padding-left: var(--padding-medium);
+  padding-right: var(--padding-medium);
+  background-color: var(--color-grey-special);
+  width: 400px;
+  box-shadow: var(--boxShadow-xdark);
+  border: 1px solid red;
+}
+
+.bid-description {
+  font-size: var(--fontSize-large);
+  font-weight: var(--fontWeight-bold);
+  margin-bottom: var(--padding-medium);
+  color: var(--color-blue-light);
+}
+
+.bid-container-1 {
+  /* border-top-style: solid;
+  border-top-width: 10px; */
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.bid-title {
+  font-size: var(--fontSize-large);
+  font-weight: var(--fontWeight-regular);
+  color: var(--color-blue-special);
+}
+
+.bid-amount {
+  font-size: var(--fontSize-xtitle);
+  font-weight: var(--fontWeight-bold);
+  color: var(--color-blue-dark);
 }
 
 .minimum-bid {
@@ -191,20 +259,16 @@
 .table-container {
   margin-bottom: 2rem;
 }
-.btn-art {
-  float: right;
-  width: 200px;
-  margin: 3rem 0rem 3rem 0rem;
-  padding: 1rem 2rem;
-  color: white;
-  border-radius: 4px;
-  background: rgb(167, 5, 5);
+.btn-artworkbid {
+  width: 100%;
+  color: var(--color-blue-special);
+  border-radius: var(--borderRadius-small);
+  background: var(--color-blue-lite);
   border: none;
 }
-
-.btn-art:hover {
-  background: rgb(245, 20, 20);
-  color: white;
+.btn-artworkbid:hover {
+  background: var(--color-blue-light);
+  color: var(--color-blue-special);
 }
 
 .preload-artwork-container {
@@ -233,32 +297,99 @@
   position: center;
 }
 
-@media screen and (max-width: 768px) {
-  .container-artworkbid {
-    width: 400px;
-    margin: none;
+.artworkbid-table {
+  width: 1000px;
+  /* width: 500px; */
+  border: 1px solid red;
+  margin: auto;
+}
+
+.artwork-table-1 {
+  width: 500px;
+}
+
+@media screen and (max-width: 1026px) {
+  .container-artworkbid-content {
+    width: 950px;
+    margin: auto;
+    flex-wrap: wrap;
   }
 
-  .bid-container {
+  .artworkbid-table {
+    width: 950px;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container-artworkbid-content {
     display: flex;
-    flex-direction: column;
-    /* border: 2px solid yellow; */
-    margin: 2rem 0rem;
-    padding-bottom: 2rem;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 740px;
+    margin: auto;
+  }
+
+  .artworkbid-image {
+    width: 400px;
+    max-width: 100%;
+    height: 300px;
+    background-repeat: no-repeat;
+    position: center;
+    border-radius: var(--borderRadius-medium);
+  }
+
+  .bid-container-1-1 {
+    border-radius: var(--boxShadow-dark);
+    border-radius: var(--borderRadius-medium);
+    padding-top: var(--padding-medium);
+    padding-bottom: var(--padding-medium);
+    padding-left: var(--padding-vsmall);
+    padding-right: var(--padding-vsmall);
+    width: 300px;
+    box-shadow: var(--boxShadow-xdark);
+  }
+
+  .form-bid {
+    width: 150px;
+  }
+
+  .artworkbid-table {
+    width: 740px;
+    margin: auto;
+  }
+
+  .artwork-table-1 {
+    width: 400px;
   }
 }
 
 @media screen and (max-width: 500px) {
-  .container-artworkbid {
-    width: 95%;
+  .container-artworkbid-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 300px;
     margin: auto;
   }
 
-  .bid-container {
-    display: flex;
-    flex-direction: column;
-    /* border: 2px solid yellow; */
-    /* margin: 2rem 0.2rem; */
-    padding-bottom: 2rem;
+  .artworkbid-image {
+    width: 300px;
+    max-width: 100%;
+    height: 200px;
+    background-repeat: no-repeat;
+    margin-bottom: var(--margin-medium);
+    position: center;
+    border-radius: var(--borderRadius-medium);
+  }
+
+  .artworkbid-table {
+    width: 300px;
+    margin: auto;
+  }
+
+  .artwork-table-1 {
+    width: 300px;
   }
 }

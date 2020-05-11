@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
+import { Spin } from 'antd';
 import { connect } from 'react-redux';
 import '../css/Userprofile.css';
-
-// materilize stuffs
-import TextField from '@material-ui/core/TextField';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import { makeStyles } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
+import '../css/App.css';
 
 // firebase stuffss
 import { storage } from '../../config/firebaseConfig';
@@ -82,26 +78,29 @@ class Updateprofile extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-
-    console.log('ref', this.nameInput.current.value);
-    console.log('here is state', this.state);
+    let selectedUrl =
+      this.state.url || this.props.userProfile.userDetails.imageUrl;
+    console.log(selectedUrl, 'chosenOne');
     const userUpdate = {
-      name: this.nameInput.current.value,
       firstName: this.firstNameInput.current.value,
       lastName: this.lastNameInput.current.value,
       country: this.countryInput.current.value,
       address: this.addressInput.current.value,
       phone: this.phoneInput.current.value,
-      imageUrl: this.state.url
+      imageUrl: selectedUrl
     };
-    console.log('update', userUpdate);
+    // console.log(userUpdate, 'hello');
 
     this.props.updateUserProfile(userUpdate, this.props.history);
   };
 
   render() {
     if (!this.props.userProfile.userDetails) {
-      return <div className="preloading-profile" />;
+      return (
+        <div className="user-spinner">
+          <Spin spinning={true} />
+        </div>
+      );
     }
     const { imageUrl } = this.props.userProfile.userDetails;
     const { imagePreviewUrl, url } = this.state;
@@ -110,7 +109,11 @@ class Updateprofile extends Component {
       <div className="profile-container">
         <img
           className="profile-image"
-          src={`${url}` || `https://ipsumimage.appspot.com/640x360`}
+          src={
+            `${
+              url.length > 5 ? url : this.props.userProfile.userDetails.imageUrl
+            }` || 'https://via.placeholder.com/400x300'
+          }
           alt="profilePicture"
         />
 
@@ -137,20 +140,7 @@ class Updateprofile extends Component {
             className="fas fa-pencil-alt pencil"
           />
 
-          <div className="container-profile-input">
-            <label htmlFor="nameInput" className="profile-label">
-              User name
-            </label>
-            <input
-              className="profile-input"
-              type="text"
-              name="nameInput"
-              ref={this.nameInput}
-              defaultValue={this.props.userProfile.userDetails.name}
-            />
-          </div>
-
-          <div className="container-profile-input">
+          <div className="container-profile-input profile-first-input">
             <label htmlFor="firstName" className="profile-label">
               First name
             </label>
@@ -219,7 +209,7 @@ class Updateprofile extends Component {
               defaultValue={this.props.userProfile.userDetails.country}
             />
           </div>
-          <button className="profile-btn">save</button>
+          <button className="profile-btn btn btn-medium">save</button>
         </form>
       </div>
     );

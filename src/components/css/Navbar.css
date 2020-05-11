@@ -52,6 +52,16 @@
   --borderRadius-large: 50%;
 }
 
+.nav-image {
+  margin-top: var(--margin-medium);
+  margin-bottom: var(--margin-medium);
+  margin-left: 60px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  box-shadow: var(--boxShadow-xdark);
+}
+
 .nav-share-link {
   display: flex;
   flex-direction: row;

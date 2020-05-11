@@ -3,10 +3,18 @@ import { Drawer, Spin } from 'antd';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../redux/actions/authAction';
+import { getUserData } from '../../redux/actions/userAction';
 import '../css/Navbar.css';
 import '../css/App.css';
 
 class Navbar extends Component {
+  componentDidMount() {
+    this.props.getUserData();
+  }
+
+  // componentDidUpdate() {
+  //   this.props.getUserData();
+  // }
   state = { visible: false };
 
   signoutUser = () => {
@@ -27,8 +35,11 @@ class Navbar extends Component {
   // drawer end
 
   render() {
+    // if(!this.props.userProfileImage){
+    //   <div>hello</div>
+    // }
     if (this.props.authenticated === true) {
-      console.log(this.props);
+      console.log('here is props', this.props.userProfileImage.imageUrl);
       return (
         <div>
           <i className="fas fa-bars close-bars" onClick={this.showDrawer} />
@@ -45,6 +56,15 @@ class Navbar extends Component {
             onClose={this.onClose}
             visible={this.state.visible}
           >
+            <img
+              className="nav-image"
+              src=
+                // `${this.props.userProfileImage.imageUrl}` ||
+                'https://via.placeholder.com/400x300'
+              
+              alt="profile image"
+            />
+
             <div className="nav-share-link">
               <Link className="style-link" to="/artworks">
                 <i className="fas fa-image " />
@@ -98,8 +118,9 @@ class Navbar extends Component {
 }
 
 const mapStateToProps = state => ({
+  userProfileImage: state.user.userProfile,
   authenticated: state.auth.authenticated,
   logoutInfo: state.ui.ui_loading_nav
 });
 
-export default connect(mapStateToProps, { logout })(Navbar);
+export default connect(mapStateToProps, { logout, getUserData })(Navbar);

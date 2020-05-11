@@ -12,8 +12,11 @@ import {
   UI_LOADING_ARTWORK,
   UI_LOADING_ARTWORKS,
   UI_LOADING_ARTWORK_BID,
+  UI_LOADING_ARTWORK_BID_BUTTON,
   CREATE_ARTWORK
 } from './types';
+// import { getUserData } from '../actions/userAction';
+import { notification } from 'antd';
 
 export const getArtworks = () => dispatch => {
   dispatch({ type: UI_LOADING_ARTWORKS, payload: true });
@@ -33,6 +36,7 @@ export const getArtworks = () => dispatch => {
 
 export const getArtwork = id => dispatch => {
   dispatch({ type: UI_LOADING_ARTWORK, payload: true });
+  // getUserData();
   axios
     .get(`https://findartt.herokuapp.com/api/v1/art/find/${id}/summary`)
     .then(response => {
@@ -48,15 +52,31 @@ export const getArtwork = id => dispatch => {
 };
 
 export const artworkBid = bid => dispatch => {
-  dispatch({ type: UI_LOADING });
+  dispatch({ type: UI_LOADING_ARTWORK_BID_BUTTON, payload: true });
   axios
     .post('https://findartt.herokuapp.com/api/v1/art/bid', bid)
     .then(response => {
       dispatch({ type: BID_ARTWORK, payload: response.data.message });
       console.log('bid', response.data.message);
+      dispatch({ type: UI_LOADING_ARTWORK_BID_BUTTON, payload: false });
+      notification.success({
+        message: 'Bid successful',
+        description: response.data.message,
+        placement: 'topRight',
+        duration: 10,
+        rtl: true
+      });
     })
     .catch(error => {
+      dispatch({ type: UI_LOADING_ARTWORK_BID_BUTTON, payload: false });
       dispatch({ type: BID_MESSAGE, payload: error.response.data.message });
+      notification.error({
+        message: 'Bid failed',
+        description: error.response.data.message,
+        placement: 'topRight',
+        duration: 10,
+        rtl: true
+      });
       console.log(error.response.data.message);
     });
   dispatch({ type: CLEAR_ERROR });
