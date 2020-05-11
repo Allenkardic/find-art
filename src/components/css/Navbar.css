@@ -54,11 +54,12 @@
 
 .nav-image {
   margin-top: var(--margin-medium);
-  margin-bottom: var(--margin-medium);
+  margin-bottom: var(--margin-small);
   margin-left: 60px;
   width: 150px;
   height: 150px;
   border-radius: 50%;
+  background-color: var(--color-grey-light);
   box-shadow: var(--boxShadow-xdark);
 }
 

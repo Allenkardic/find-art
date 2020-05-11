@@ -35,85 +35,92 @@ class Navbar extends Component {
   // drawer end
 
   render() {
-    // if(!this.props.userProfileImage){
-    //   <div>hello</div>
-    // }
-    if (this.props.authenticated === true) {
-      console.log('here is props', this.props.userProfileImage.imageUrl);
-      return (
-        <div>
-          <i className="fas fa-bars close-bars" onClick={this.showDrawer} />
-          <Drawer
-            headerStyle={{ backgroundColor: '#020c13f5' }}
-            bodyStyle={{
-              backgroundColor: '#020c13f5',
-              padding: '0',
-              margin: '0'
-            }}
-            width={300}
-            placement="left"
-            closable={false}
-            onClose={this.onClose}
-            visible={this.state.visible}
-          >
-            <img
-              className="nav-image"
-              src=
-                // `${this.props.userProfileImage.imageUrl}` ||
-                'https://via.placeholder.com/400x300'
-              
-              alt="profile image"
-            />
-
-            <div className="nav-share-link">
-              <Link className="style-link" to="/artworks">
-                <i className="fas fa-image " />
-              </Link>
-              <Link className="style-link" to="/artworks">
-                <div className="nav-link">Artworks</div>
-              </Link>
-            </div>
-
-            <div className="nav-share-link">
-              <Link className="style-link" to="/user/profile">
-                <i className="fas fa-user-circle " />
-              </Link>
-              <Link className="style-link" to="/user/profile">
-                <div className="nav-link">Profile</div>
-              </Link>
-            </div>
-
-            <div className="nav-share-link">
-              <Link className="style-link " to="/user/myartworks">
-                <i className="fas fa-image " />
-              </Link>
-              <Link className="style-link" to="/user/myartworks">
-                <div className="nav-link">My Artworks</div>
-              </Link>
-            </div>
-
-            <div className="nav-share-link">
-              <Link className="style-link" to="/logout">
-                <i className="fas fa-sign-out-alt " />
-              </Link>
-
-              <div
-                className="nav-link nav-link-spin"
-                onClick={this.signoutUser}
-              >
-                logout
-                {/* {this.props.logoutInfo.ui_loading} */}
-                <Spin
-                  className="spinner-nav"
-                  spinning={!!this.props.logoutInfo}
-                />
-              </div>
-            </div>
-          </Drawer>
-        </div>
-      );
+    if (!this.props.userProfileImage.userDetails) {
+      return null;
     }
-    return null;
+    return (
+      <div>
+        {this.props.authenticated === true ? (
+          <div>
+            <i className="fas fa-bars close-bars" onClick={this.showDrawer} />
+            <Drawer
+              headerStyle={{ backgroundColor: '#020c13f5' }}
+              bodyStyle={{
+                backgroundColor: '#020c13f5',
+                padding: '0',
+                margin: '0'
+              }}
+              width={300}
+              placement="left"
+              closable={false}
+              onClose={this.onClose}
+              visible={this.state.visible}
+              // visible={true}
+            >
+              <img
+                className="nav-image"
+                src={
+                  `${this.props.userProfileImage.userDetails.imageUrl}` ||
+                  'https://via.placeholder.com/400x300'
+                }
+                alt="profile image"
+              />
+
+              <Link to="/artworks">
+                <div className="nav-share-link">
+                  <Link className="style-link" to="/artworks">
+                    <i className="fas fa-image " />
+                  </Link>
+                  <Link className="style-link" to="/artworks">
+                    <div className="nav-link">Artworks</div>
+                  </Link>
+                </div>
+              </Link>
+
+              <Link to="/user/profile">
+                <div className="nav-share-link">
+                  <Link className="style-link" to="/user/profile">
+                    <i className="fas fa-user-circle " />
+                  </Link>
+                  <Link className="style-link" to="/user/profile">
+                    <div className="nav-link">Profile</div>
+                  </Link>
+                </div>
+              </Link>
+
+              <Link to="/user/myartworks">
+                <div className="nav-share-link">
+                  <Link className="style-link " to="/user/myartworks">
+                    <i className="fas fa-image " />
+                  </Link>
+                  <Link className="style-link" to="/user/myartworks">
+                    <div className="nav-link">My Artworks</div>
+                  </Link>
+                </div>
+              </Link>
+
+              <div className="nav-share-link">
+                <Link className="style-link" to="/logout">
+                  <i className="fas fa-sign-out-alt " />
+                </Link>
+
+                <div
+                  className="nav-link nav-link-spin"
+                  onClick={this.signoutUser}
+                >
+                  logout
+                  {/* {this.props.logoutInfo.ui_loading} */}
+                  <Spin
+                    className="spinner-nav"
+                    spinning={!!this.props.logoutInfo}
+                  />
+                </div>
+              </div>
+            </Drawer>
+          </div>
+        ) : null}
+      </div>
+    );
   }
 }
 
