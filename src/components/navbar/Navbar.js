@@ -35,9 +35,6 @@ class Navbar extends Component {
   // drawer end
 
   render() {
-    if (!this.props.userProfileImage.userDetails) {
-      return null;
-    }
     return (
       <div>
         {this.props.authenticated === true ? (
@@ -60,8 +57,10 @@ class Navbar extends Component {
               <img
                 className="nav-image"
                 src={
-                  `${this.props.userProfileImage.userDetails.imageUrl}` ||
-                  'https://via.placeholder.com/400x300'
+                  !this.props.userProfileImage.userDetails
+                    ? null
+                    : `${this.props.userProfileImage.userDetails.imageUrl}` ||
+                      'https://via.placeholder.com/400x300'
                 }
                 alt="profile image"
               />
