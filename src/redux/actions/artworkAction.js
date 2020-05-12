@@ -99,6 +99,13 @@ export const createArtwork = artwork => dispatch => {
   axios
     .post('https://findartt.herokuapp.com/api/v1/art/create', artwork)
     .then(response => {
+      notification.success({
+        message: 'Artwork created',
+        description: response.data.message,
+        placement: 'topRight',
+        duration: 10,
+        rtl: true
+      });
       dispatch({ type: CREATE_ARTWORK, payload: response.data.message });
     })
     .catch(error => {

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { Drawer } from 'antd';
 import PropTypes from 'prop-types';
 import Myartwork from './Myartwork';
 import '../css/Myartwork.css';
+import '../css/App.css';
 
 // redux stuffs
 import { connect } from 'react-redux';
@@ -27,29 +29,29 @@ const Myartworks = props => {
   }, []);
 
   // dom manipulation functions
-  const openCreateArtworkForm = () => {
-    const containerArtwork = document.querySelector('.container-myartwork');
-    const formMyArtwork = document.querySelector('.add-myartwork-form');
-    const addMyartwork = document.querySelector('.add-myartwork');
-    const body = document.querySelector('body');
-    containerArtwork.style.cssText = 'overflow:hidden; opacity:0.1';
-    formMyArtwork.style.cssText = 'display:block; opacity:1';
-    addMyartwork.style = 'display:none';
-    body.style = 'overflow:hidden';
-    console.log('clicked');
-  };
+  // const openCreateArtworkForm = () => {
+  //   const containerArtwork = document.querySelector('.container-myartwork');
+  //   const formMyArtwork = document.querySelector('.add-myartwork-form');
+  //   const addMyartwork = document.querySelector('.add-myartwork');
+  //   const body = document.querySelector('body');
+  //   containerArtwork.style.cssText = 'overflow:hidden; opacity:0.1';
+  //   formMyArtwork.style.cssText = 'display:block; opacity:1';
+  //   addMyartwork.style = 'display:none';
+  //   body.style = 'overflow:hidden';
+  //   console.log('clicked');
+  // };
 
-  const closeCreateArtworkForm = () => {
-    const bcontainerArtwork = document.querySelector('.container-myartwork');
-    const bformMyArtwork = document.querySelector('.add-myartwork-form');
-    const baddMyartwork = document.querySelector('.add-myartwork');
-    const bbody = document.querySelector('body');
-    bcontainerArtwork.style.cssText = 'overflow:visible; opacity:1';
-    bformMyArtwork.style = 'display:none;';
-    baddMyartwork.style = 'display:block';
-    bbody.style = 'overflow:visible';
-    console.log('clicked 2 2 2');
-  };
+  // const closeCreateArtworkForm = () => {
+  //   const bcontainerArtwork = document.querySelector('.container-myartwork');
+  //   const bformMyArtwork = document.querySelector('.add-myartwork-form');
+  //   const baddMyartwork = document.querySelector('.add-myartwork');
+  //   const bbody = document.querySelector('body');
+  //   bcontainerArtwork.style.cssText = 'overflow:visible; opacity:1';
+  //   bformMyArtwork.style = 'display:none;';
+  //   baddMyartwork.style = 'display:block';
+  //   bbody.style = 'overflow:visible';
+  //   console.log('clicked 2 2 2');
+  // };
 
   // const getAddButton = document.querySelector('.add-myartwork');
   // getAddButton.style.remove();
@@ -148,6 +150,12 @@ const Myartworks = props => {
     setValueMin({ minimumAmount: event.target.value });
   };
 
+  // drawer
+  const [isVisible, setIsVisible] = useState(false);
+  const openDrawer = () => {
+    setIsVisible(true);
+  };
+
   const handleSubmit = e => {
     e.preventDefault();
     const { name } = valueName;
@@ -172,6 +180,9 @@ const Myartworks = props => {
     setValueName({ name: '' });
     setValueDes({ description: '' });
     setValueMin({ minimumAmount: parseFloat('') });
+    setImageProgress(0);
+    setVideoProgress(0);
+    setIsVisible(false);
   };
 
   const { userArtworks } = props;
@@ -183,99 +194,125 @@ const Myartworks = props => {
   const check = 28;
   return (
     <div>
-      <div className="add-myartwork-form">
-        <div className="close-create-artwork">
-          <i
-            onClick={closeCreateArtworkForm}
-            className="far fa-window-close close-create-artwork"
-          />
-        </div>
-        <div style={{ color: 'blue', fontSize: '1.2em' }}>
-          {props.createArtworkMessage.createArtworkMessage}
-        </div>
-        <div className="container-createartwork-input">
-          <progress
-            value={imageProgress}
-            max="100"
-            className="progress-bar-1"
-          />
-          <input
-            // this input accepts both images and videos
-            id="fileUrl"
-            className="create-image-upload"
-            type="file"
-            accept="image/png, image/jpeg, video/*"
-            hidden="hidden"
-            onChange={e => handleFileChange(e)}
-          />
-
-          <button onClick={handleChosenFile} className="change-btn">
-            Add Artwork
-          </button>
-        </div>
-
-        {/* video stuffs */}
-        <div className="container-createartwork-input">
-          <progress value={videoProgress} max="100" className="progress-bar" />
-          <input
-            type="file"
-            accept="video/*"
-            onChange={e => handleVideoChange(e)}
-          />
-          <button onClick={handleUploadVideo} className="change-btn">
-            Upload video
-          </button>
-        </div>
-
-        {/* form: artwork data */}
-        <form action="" onSubmit={handleSubmit}>
+      <Drawer
+        title="Add Artwork"
+        placement="right"
+        headerStyle={{
+          backgroundColor: 'rgb(245, 245, 245)',
+          overflow: 'hidden'
+        }}
+        bodyStyle={{
+          backgroundColor: 'rgb(245, 245, 245)',
+          padding: '0',
+          margin: '0'
+        }}
+        width={320}
+        placement="right"
+        visible={isVisible}
+        onClose={handleSubmit}
+        closable={false}
+      >
+        <div className="add-myartwork-form">
+          <div style={{ color: 'blue', fontSize: '1.2em' }}></div>
           <div className="container-createartwork-input">
-            <label htmlFor="">Artwork name:</label>
+            <progress
+              value={imageProgress}
+              max="100"
+              className="progress-bar-1"
+            />
             <input
-              className="createartwork-input"
-              type="text"
-              name="name"
-              value={valueName.name}
-              onChange={handleChangeName}
-              placeholder="Enter artwork name"
-              required
+              // this input accepts both images and videos
+              id="fileUrl"
+              className="create-image-upload"
+              type="file"
+              accept="image/png, image/jpeg, video/*"
+              hidden="hidden"
+              onChange={e => handleFileChange(e)}
             />
-          </div>
-          <div className="container-createartwork-input ">
-            <label htmlFor="">Artwork description:</label>
-            <textarea
-              className="createartwork-input description"
-              name="description"
-              value={valueDes.description}
-              onChange={handleChangeDescription}
-              placeholder="Enter artwork description"
-              row="4"
-              cols="50"
-              required
-            />
-          </div>
-          <div className="container-createartwork-input">
-            <label htmlFor="">Enter minimum bid amount:</label>
-            <input
-              className="createartwork-input"
-              type="number"
-              name="minimumAmount"
-              value={valueMin.minimumAmount}
-              onChange={handleChangeMinimumAmount}
-              placeholder="Enter minimum bid"
-              required
-            />
+
+            <button
+              onClick={handleChosenFile}
+              className="btn btn-medium change-btn"
+            >
+              Add Artwork
+            </button>
           </div>
 
-          <button className="change-btn">Create artwork</button>
-        </form>
-      </div>
+          {/* video stuffs */}
+          <div className="container-createartwork-input">
+            <progress
+              value={videoProgress}
+              max="100"
+              className="progress-bar"
+            />
+            <input
+              type="file"
+              accept="video/*"
+              onChange={e => handleVideoChange(e)}
+            />
+            <button
+              onClick={handleUploadVideo}
+              className="btn btn-medium change-btn"
+            >
+              Upload video
+            </button>
+          </div>
+
+          {/* form: artwork data */}
+          <form action="" onSubmit={handleSubmit}>
+            <div className="container-createartwork-input">
+              <label htmlFor="" className="myartwork-label">
+                Artwork name
+              </label>
+              <input
+                className="createartwork-input"
+                type="text"
+                name="name"
+                value={valueName.name}
+                onChange={handleChangeName}
+                placeholder="Enter artwork name"
+                required
+              />
+            </div>
+            <div className="container-createartwork-input ">
+              <label htmlFor="" className="myartwork-label">
+                Artwork description
+              </label>
+              <textarea
+                className="createartwork-input description"
+                name="description"
+                value={valueDes.description}
+                onChange={handleChangeDescription}
+                placeholder="Enter artwork description"
+                row="4"
+                cols="50"
+                required
+              />
+            </div>
+            <div className="container-createartwork-input">
+              <label htmlFor="" className="myartwork-label">
+                Enter minimum bid amount
+              </label>
+              <input
+                className="createartwork-input"
+                type="number"
+                name="minimumAmount"
+                value={valueMin.minimumAmount}
+                onChange={handleChangeMinimumAmount}
+                placeholder="Enter minimum bid"
+                required
+              />
+            </div>
+
+            <button className="btn btn-medium change-btn">
+              Create artwork
+            </button>
+          </form>
+        </div>
+      </Drawer>
       {/* my artwork */}
       <div className="myartwork">
-        <i
-          onClick={openCreateArtworkForm}
-          className="fas fa-plus add-myartwork"
-        />
+        <i onClick={openDrawer} className="fas fa-plus add-myartwork" />
       </div>
       <div className="container-myartwork">
         {userArtworks.map(image => (

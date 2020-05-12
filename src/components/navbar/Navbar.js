@@ -52,7 +52,6 @@ class Navbar extends Component {
               closable={false}
               onClose={this.onClose}
               visible={this.state.visible}
-              // visible={true}
             >
               <img
                 className="nav-image"

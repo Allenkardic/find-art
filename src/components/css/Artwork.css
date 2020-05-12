@@ -77,7 +77,6 @@
   justify-content: space-evenly;
   display: flex;
   flex-wrap: wrap;
-  overflow-x: hidden;
 }
 .artworks-available-bid {
   margin-top: var(--margin-large);
@@ -132,6 +131,7 @@
   color: var(--color-blue-light);
   text-overflow: ellipsis;
   white-space: nowrap;
+  overflow: hidden;
   width: 100%;
 }
 
@@ -144,8 +144,11 @@
 /* artwork bid css starts */
 .container-artworkbid {
   background-color: var(--color-white-light);
-  /* margin: auto; */
-  /* width: 600px; */
+}
+
+.artworkbid-spinner {
+  width: 100%;
+  text-align: center;
 }
 
 .bid-name-title {
@@ -165,14 +168,21 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 1000px;
-  border: 1px solid red;
+  flex-wrap: wrap;
+  max-width: 1000px;
   margin: auto;
   /* margin-left: var(--margin-xlarge); */
 }
 
+.container-artworkbid-content-items {
+  /* border: 1px solid green; */
+  width: 450px;
+  /* height: 300px; */
+  margin-bottom: var(--margin-xlarge);
+}
+
 .artworkbid-image {
-  width: 500px;
+  width: 100%;
   max-width: 100%;
   height: 400px;
   background-color: var(--color-grey-light);
@@ -180,12 +190,6 @@
   position: center;
   border-radius: var(--borderRadius-medium);
 }
-
-/* .bid-container {
-  width: 500px;
-  margin: 4rem 0rem;
-  padding-bottom: 2rem;
-} */
 
 .bid-container-1-1 {
   border-radius: var(--boxShadow-dark);
@@ -197,7 +201,7 @@
   background-color: var(--color-grey-special);
   width: 400px;
   box-shadow: var(--boxShadow-xdark);
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .bid-description {
@@ -227,38 +231,6 @@
   color: var(--color-blue-dark);
 }
 
-.minimum-bid {
-  display: flex;
-  font-size: 1.5em;
-  justify-content: center;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  padding: 0.9rem 2rem;
-  border-radius: 10px;
-  border: 2px solid whitesmoke;
-  color: red;
-  background: whitesmoke;
-}
-
-.bid-message-success {
-  font-size: 1.5em;
-  color: blue;
-  padding: 1rem;
-  margin-bottom: 2rem;
-  border-radius: 14px;
-}
-
-.bid-message-failed {
-  font-size: 1.5em;
-  color: red;
-  padding: 1rem;
-  margin-bottom: 2rem;
-  border-radius: 14px;
-}
-
-.table-container {
-  margin-bottom: 2rem;
-}
 .btn-artworkbid {
   width: 100%;
   color: var(--color-blue-special);
@@ -271,72 +243,32 @@
   color: var(--color-blue-special);
 }
 
-.preload-artwork-container {
-  width: 50vw;
-  margin: 2rem auto;
-}
-
-.preloading {
-  background-color: gainsboro;
-  border-radius: 4px;
-  max-width: 100%;
-  width: 100%;
-  height: 60vh;
-  margin-bottom: 2rem;
-  background-repeat: no-repeat;
-  position: center;
-}
-
-.preloading-bottom {
-  background-color: gainsboro;
-  border-radius: 4px;
-  max-width: 100%;
-  width: 100%;
-  height: 20vh;
-  background-repeat: no-repeat;
-  position: center;
-}
-
-.artworkbid-table {
-  width: 1000px;
-  /* width: 500px; */
-  border: 1px solid red;
+/* .artworkbid-table {
+  overflow: hidden;
+  overflow: visible;
+  max-width: 1000px;
   margin: auto;
-}
+} */
 
-.artwork-table-1 {
-  width: 500px;
-}
-
-@media screen and (max-width: 1026px) {
-  .container-artworkbid-content {
-    width: 950px;
-    margin: auto;
-    flex-wrap: wrap;
-  }
-
-  .artworkbid-table {
-    width: 950px;
-    margin: auto;
-  }
+.table-table {
+  max-width: 100%;
+  /* border: 1px solid red; */
 }
 
 @media screen and (max-width: 768px) {
   .container-artworkbid-content {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 740px;
-    margin: auto;
+    justify-content: space-evenly;
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .container-artworkbid-content {
+    width: 95%;
   }
 
-  .artworkbid-image {
-    width: 400px;
-    max-width: 100%;
-    height: 300px;
-    background-repeat: no-repeat;
-    position: center;
-    border-radius: var(--borderRadius-medium);
+  .container-artworkbid-content-items {
+    width: 100%;
   }
 
   .bid-container-1-1 {
@@ -346,7 +278,7 @@
     padding-bottom: var(--padding-medium);
     padding-left: var(--padding-vsmall);
     padding-right: var(--padding-vsmall);
-    width: 300px;
+    width: 350px;
     box-shadow: var(--boxShadow-xdark);
   }
 
@@ -354,27 +286,7 @@
     width: 150px;
   }
 
-  .artworkbid-table {
-    width: 740px;
-    margin: auto;
-  }
-
-  .artwork-table-1 {
-    width: 400px;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .container-artworkbid-content {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    width: 300px;
-    margin: auto;
-  }
-
-  .artworkbid-image {
+  /* .artworkbid-image {
     width: 300px;
     max-width: 100%;
     height: 200px;
@@ -382,14 +294,59 @@
     margin-bottom: var(--margin-medium);
     position: center;
     border-radius: var(--borderRadius-medium);
+  } */
+}
+
+@media screen and (max-width: 374px) {
+  .bid-container-1-1 {
+    border-radius: var(--boxShadow-dark);
+    border-radius: var(--borderRadius-medium);
+    padding-top: var(--padding-medium);
+    padding-bottom: var(--padding-medium);
+    padding-left: var(--padding-vsmall);
+    padding-right: var(--padding-vsmall);
+    width: 320px;
+    box-shadow: var(--boxShadow-xdark);
   }
 
-  .artworkbid-table {
-    width: 300px;
-    margin: auto;
+  .form-bid {
+    width: 150px;
   }
 
-  .artwork-table-1 {
+  /* .artworkbid-image {
     width: 300px;
+    max-width: 100%;
+    height: 200px;
+    background-repeat: no-repeat;
+    margin-bottom: var(--margin-medium);
+    position: center;
+    border-radius: var(--borderRadius-medium);
+  } */
+}
+
+@media screen and (max-width: 361px) {
+  .bid-container-1-1 {
+    border-radius: var(--boxShadow-dark);
+    border-radius: var(--borderRadius-medium);
+    padding-top: var(--padding-medium);
+    padding-bottom: var(--padding-medium);
+    padding-left: var(--padding-vsmall);
+    padding-right: var(--padding-vsmall);
+    width: 340px;
+    box-shadow: var(--boxShadow-xdark);
   }
+
+  .form-bid {
+    width: 150px;
+  }
+
+  /* .artworkbid-image {
+    width: 300px;
+    max-width: 100%;
+    height: 200px;
+    background-repeat: no-repeat;
+    margin-bottom: var(--margin-medium);
+    position: center;
+    border-radius: var(--borderRadius-medium);
+  } */
 }

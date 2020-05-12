@@ -46,6 +46,12 @@ export default function(state = initialState, action) {
         isFetching_artwork: action.payload
       };
 
+    case UI_LOADING_ARTWORK_BID_BUTTON:
+      return {
+        ...state,
+        isFetching_artworkBid_button: action.payload
+      };
+
     case UI_LOADING_USERPROFILE:
       return {
         ...state,
