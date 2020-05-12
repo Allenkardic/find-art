@@ -64,13 +64,10 @@
   background-color: var(--color-white-light);
 }
 
-.sp-artworks {
-  position: fixed;
-  margin-top: 30vh;
-}
-
-.spinner-artwork {
-  margin-top: 30vh;
+.spinner-artworks {
+  margin-top: 40vh;
+  width: 100%;
+  text-align: center;
 }
 
 .container-artworks-main {

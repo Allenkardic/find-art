@@ -15,18 +15,13 @@ class Artworks extends Component {
     console.log(this.props);
     return (
       <div className="container-artworks">
-        <div className="sp-artworks">
-          <Spin
-            className="spinner-artworks"
-            spinning={!!this.props.isFetching}
-          />
-        </div>
         <div className="artworks-available-bid">Arts Available for Bids </div>
         <div className="container-artworks-main">
           {artworks.map(image => (
             <Artwork Key={image.id} artworks={image} />
           ))}
         </div>
+        <Spin className="spinner-artworks" spinning={!!this.props.isFetching} />
       </div>
     );
   }
