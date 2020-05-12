@@ -53,7 +53,11 @@
 
 .form-container {
   background-color: var(--color-blue-special);
-  height: 120vh;
+  height: 150vh;
+}
+
+.form-container-login {
+  height: 100vh;
 }
 .form-container-item {
   display: flex;

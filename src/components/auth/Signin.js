@@ -38,7 +38,7 @@ function Signin(props) {
   };
   console.log(props.signinInfo);
   return (
-    <div className="form-container">
+    <div className="form-container form-container-login">
       <div className="form-container-item">
         <img className="art-logo" src={Logo} alt="logo" />
         <div className="form-title">Artwork market place</div>
@@ -71,7 +71,7 @@ function Signin(props) {
           <Input
             className="form-auth-input"
             type="email"
-            placeholder="Username"
+            placeholder="E-mail"
             onChange={onChangeEmail}
             value={emailValue}
           />
