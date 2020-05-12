@@ -74,9 +74,11 @@
 }
 
 .container-artworks-main {
-  justify-content: space-evenly;
   display: flex;
+  justify-content: space-evenly;
   flex-wrap: wrap;
+  max-width: 1300px;
+  margin: auto;
 }
 .artworks-available-bid {
   margin-top: var(--margin-large);
