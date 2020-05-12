@@ -12,9 +12,6 @@ class Navbar extends Component {
     this.props.getUserData();
   }
 
-  // componentDidUpdate() {
-  //   this.props.getUserData();
-  // }
   state = { visible: false };
 
   signoutUser = () => {
@@ -49,9 +46,10 @@ class Navbar extends Component {
               }}
               width={300}
               placement="left"
-              closable={false}
+              closable={true}
               onClose={this.onClose}
               visible={this.state.visible}
+              // visible={true}
             >
               <img
                 className="nav-image"
@@ -64,50 +62,28 @@ class Navbar extends Component {
                 alt="profile image"
               />
 
-              <Link to="/artworks">
-                <div className="nav-share-link">
-                  <Link className="style-link" to="/artworks">
-                    <i className="fas fa-image " />
-                  </Link>
-                  <Link className="style-link" to="/artworks">
-                    <div className="nav-link">Artworks</div>
-                  </Link>
-                </div>
+              <Link className="nav-share-link" to="/artworks">
+                <i className="fas fa-image style-link" />
+                <div className="nav-link style-link">Artworks</div>
               </Link>
 
-              <Link to="/user/profile">
-                <div className="nav-share-link">
-                  <Link className="style-link" to="/user/profile">
-                    <i className="fas fa-user-circle " />
-                  </Link>
-                  <Link className="style-link" to="/user/profile">
-                    <div className="nav-link">Profile</div>
-                  </Link>
-                </div>
+              <Link className="nav-share-link" to="/user/profile">
+                <i className="fas fa-user-circle style-link" />
+                <div className="nav-link style-link">Profile</div>
               </Link>
 
-              <Link to="/user/myartworks">
-                <div className="nav-share-link">
-                  <Link className="style-link " to="/user/myartworks">
-                    <i className="fas fa-image " />
-                  </Link>
-                  <Link className="style-link" to="/user/myartworks">
-                    <div className="nav-link">My Artworks</div>
-                  </Link>
-                </div>
+              <Link className="nav-share-link" to="/user/myartworks">
+                <i className="fas fa-image style-link" />
+                <div className="nav-link style-link">My Artworks</div>
               </Link>
 
               <div className="nav-share-link">
-                <Link className="style-link" to="/logout">
-                  <i className="fas fa-sign-out-alt " />
-                </Link>
-
+                <i className=" style-link fas fa-sign-out-alt " />
                 <div
                   className="nav-link nav-link-spin"
                   onClick={this.signoutUser}
                 >
                   logout
-                  {/* {this.props.logoutInfo.ui_loading} */}
                   <Spin
                     className="spinner-nav"
                     spinning={!!this.props.logoutInfo}
