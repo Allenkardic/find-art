@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 // import '../css/Form.css';
-import LinearProgress from '@material-ui/core/LinearProgress';
 import { connect } from 'react-redux';
 import { logout } from '../../redux/actions/authAction';
 
@@ -10,16 +9,7 @@ class Logout extends Component {
   };
 
   render() {
-    return (
-      <div>
-        <button className="btn-default" onClick={this.signoutUser}>
-          logout
-          {this.props.logoutInfo.ui_loading && (
-            <LinearProgress style={{ zindex: '5' }} variant="query" />
-          )}
-        </button>
-      </div>
-    );
+    return <div>hello</div>;
   }
 }
 
