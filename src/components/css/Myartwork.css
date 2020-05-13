@@ -12,6 +12,7 @@
   --color-blue-lite: rgb(188, 188, 228);
   --color-white-light: rgb(255, 255, 255);
   --color-white-dark: rgb(245, 245, 245);
+  --color-red-dark: rgb(49, 6, 6);
 
   /* font size */
   --fontSize-small: 12px;
@@ -109,6 +110,11 @@
   border: 0.5 solid red;
 }
 
+.myartworks-fetching {
+  width: 100%;
+  text-align: center;
+}
+
 .add-myartwork {
   border: none;
   position: fixed;
@@ -141,6 +147,28 @@
   height: auto;
   padding: 0.5rem 0.5rem;
   margin-bottom: 3rem;
+}
+
+.myartwork-delete-card {
+  background-color: var(--color-blue-lite);
+  color: var(--color-white-light);
+  padding: var(--padding-medium);
+  width: 300px;
+  box-shadow: var(--boxShadow-xdark);
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: var(--margin-large);
+  border-radius: var(--borderRadius-medium);
+}
+
+.btn-delete-art {
+  border-radius: var(--borderRadius-medium);
+  border-style: solid;
+  border-width: 1px;
+  border-color: var(--color-red-dark);
+  color: var(--color-red-dark);
+  /* background-color: var(--color-blue-dark); */
 }
 
 @media screen and (max-width: 768px) {

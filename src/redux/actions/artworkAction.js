@@ -13,6 +13,9 @@ import {
   UI_LOADING_ARTWORKS,
   UI_LOADING_ARTWORK_BID,
   UI_LOADING_ARTWORK_BID_BUTTON,
+  UI_LOADING_MYARTWORKS,
+  UI_LOADING_MYARTWORK_DETAILS,
+  UI_LOADING_ARTWORK_DELETE,
   CREATE_ARTWORK
 } from './types';
 // import { getUserData } from '../actions/userAction';
@@ -83,13 +86,15 @@ export const artworkBid = bid => dispatch => {
 };
 
 export const myArtworks = () => dispatch => {
-  dispatch({ type: UI_LOADING });
+  dispatch({ type: UI_LOADING_MYARTWORKS, payload: true });
   axios
     .get('https://findartt.herokuapp.com/api/v1/art/owner/find')
     .then(response => {
       dispatch({ type: MY_ARTWORKS, payload: response.data.data });
+      dispatch({ type: UI_LOADING_MYARTWORKS, payload: false });
     })
     .catch(error => {
+      dispatch({ type: UI_LOADING_MYARTWORKS, payload: false });
       console.log(error);
     });
   dispatch({ type: CLEAR_ERROR });
@@ -109,6 +114,29 @@ export const createArtwork = artwork => dispatch => {
       dispatch({ type: CREATE_ARTWORK, payload: response.data.message });
     })
     .catch(error => {
+      console.log(error);
+    });
+  dispatch({ type: CLEAR_ERROR });
+};
+
+export const deleteMyartwork = (id, history) => dispatch => {
+  dispatch({ type: UI_LOADING_ARTWORK_DELETE, payload: true });
+  axios
+    .delete(`https://findartt.herokuapp.com/api/v1/art/delete/${id}`)
+    .then(response => {
+      notification.success({
+        message: 'MyArtwork Deleted',
+        description: response.data.message,
+        placement: 'topRight',
+        duration: 10,
+        rtl: true
+      });
+      dispatch({ type: UI_LOADING_ARTWORK_DELETE, payload: false });
+      history.push('/user/myartworks');
+      // dispatch({ type: CREATE_ARTWORK, payload: response.data.message });
+    })
+    .catch(error => {
+      dispatch({ type: UI_LOADING_ARTWORK_DELETE, payload: false });
       console.log(error);
     });
   dispatch({ type: CLEAR_ERROR });

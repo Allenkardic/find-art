@@ -49,16 +49,6 @@ function Userprofile(props) {
         )}
       </div>
       <div className="profile-container-item">
-        {dateOfBirth === '' ? null : (
-          <span>
-            DOB:{' '}
-            <Moment format="D MMM YYYY" withTitle>
-              {dateOfBirth}
-            </Moment>
-          </span>
-        )}
-      </div>
-      <div className="profile-container-item">
         {country === '' ? null : (
           <span>
             <i className="fas fa-globe-africa" /> {country}

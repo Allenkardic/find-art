@@ -12,7 +12,6 @@ class Artworks extends Component {
 
   render() {
     const { artworks } = this.props;
-    console.log(this.props);
     return (
       <div className="container-artworks">
         <div className="artworks-available-bid">Arts Available for Bids </div>

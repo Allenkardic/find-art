@@ -9,6 +9,7 @@ import ArtworkBid from '../artworks/ArtworkBid';
 import Userprofile from '../user/Userprofile';
 import Updateprofile from '../user/Updateprofile';
 import Myartworks from '../artworks/Myartworks';
+import MyartworksDetails from '../artworks/MyartworksDetails';
 // authentication stuffs
 import PrivateRoute from '../auth/PrivateRoute';
 import Signin from '../auth/Signin';
@@ -40,6 +41,11 @@ class Main extends Component {
               exact
               path="/user/myartworks"
               component={Myartworks}
+            />
+            <PrivateRoute
+              exact
+              path="/user/myartworks/details/:id"
+              component={MyartworksDetails}
             />
 
             <PrivateRoute exact path="/user/profile" component={Userprofile} />

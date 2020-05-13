@@ -1,13 +1,16 @@
 import React from 'react';
-import '../css/Myartwork.css';
+import { Link } from 'react-router-dom';
+import '../css/Artwork.css';
 
 const Myartwork = props => {
-  const { imageUrl, name, description } = props.userArtworks;
+  const { id, imageUrl, name, description } = props.userArtworks;
   return (
-    <div className="container-myartwork-url">
-      <img className="myartwork-url" src={imageUrl} alt="art work" />
-      <div className="myartwork-description">Artwork name: {name}</div>
-      <div className="myartwork-description">Description: {description}</div>
+    <div className="container-artwork-url">
+      <Link to={`/user/myartworks/details/${id}`}>
+        <img className="artwork-image" src={imageUrl} alt="art work" />
+      </Link>
+      <div className="artwork-title">{name}</div>
+      <div className="artwork-description">{description}</div>
     </div>
   );
 };

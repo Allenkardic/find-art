@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Drawer } from 'antd';
+import { Drawer, Spin } from 'antd';
 import PropTypes from 'prop-types';
 import Myartwork from './Myartwork';
 import '../css/Myartwork.css';
 import '../css/App.css';
+import Artwork from './Artwork';
 
 // redux stuffs
 import { connect } from 'react-redux';
@@ -25,7 +26,8 @@ const Myartworks = props => {
 
   useEffect(() => {
     props.myArtworks();
-    console.log('hello');
+    // props.myArtworks();
+    console.log(props, 'hello');
   }, []);
 
   // dom manipulation functions
@@ -186,12 +188,8 @@ const Myartworks = props => {
   };
 
   const { userArtworks } = props;
-  console.log('myartwork', props);
-  console.log(
-    'createmyartworkMeassage',
-    props.createArtworkMessage.createArtworkMessage.length
-  );
   const check = 28;
+  console.log(props, 'myartwork loading');
   return (
     <div>
       <Drawer
@@ -314,10 +312,17 @@ const Myartworks = props => {
       <div className="myartwork">
         <i onClick={openDrawer} className="fas fa-plus add-myartwork" />
       </div>
-      <div className="container-myartwork">
-        {userArtworks.map(image => (
-          <Myartwork key={image.id} userArtworks={image} />
-        ))}
+      <div className="container-artworks">
+        <div className="artworks-available-bid">My Artworks </div>
+        <div className="container-artworks-main">
+          {userArtworks.map(image => (
+            <Myartwork key={image.id} userArtworks={image} />
+          ))}
+        </div>
+        <Spin
+          className="myartworks-fetching"
+          spinning={!!props.isFetchingMyartworks}
+        />
       </div>
     </div>
   );
@@ -325,7 +330,8 @@ const Myartworks = props => {
 
 const mapStateToProps = state => ({
   userArtworks: state.artwork.userArtworks,
-  createArtworkMessage: state.artwork
+  createArtworkMessage: state.artwork,
+  isFetchingMyartworks: state.ui.isFetching_myartworks
 });
 
 Myartworks.propTypes = {

@@ -7,6 +7,9 @@ import {
   UI_LOADING_ARTWORK_BID_BUTTON,
   UI_LOADING_USERPROFILE,
   UI_LOADING_USERPROFILE_BUTTON,
+  UI_LOADING_MYARTWORKS,
+  UI_LOADING_MYARTWORK_DETAILS,
+  UI_LOADING_ARTWORK_DELETE,
   CLEAR_ERROR
 } from '../actions/types';
 
@@ -17,7 +20,10 @@ const initialState = {
   isFetching_artworks: false,
   isFetching_artworkBid_button: false,
   isFetching_userprofile: false,
-  isFetching_userprofile_button: false
+  isFetching_userprofile_button: false,
+  isFetching_myartworks: false,
+  isFetching_myartworks_details: false,
+  isFetching_myartwork_delete: false
 };
 
 export default function(state = initialState, action) {
@@ -62,6 +68,24 @@ export default function(state = initialState, action) {
       return {
         ...state,
         isFetching_userprofile_button: action.payload
+      };
+
+    case UI_LOADING_MYARTWORKS:
+      return {
+        ...state,
+        isFetching_myartworks: action.payload
+      };
+
+    case UI_LOADING_MYARTWORK_DETAILS:
+      return {
+        ...state,
+        isFetching_myartworks_details: action.payload
+      };
+
+    case UI_LOADING_ARTWORK_DELETE:
+      return {
+        ...state,
+        isFetching_myartwork_delete: action.payload
       };
 
     case CLEAR_ERROR:
